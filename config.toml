@@ -2,8 +2,8 @@
 # If you want to see the full configuration, please check `full-config.toml` .
 # And see https://gohugo.io/getting-started/configuration/ .
 
-baseURL = "http://localhost:1313/"
-title = "ZY Shang - 我的世界"
+baseURL = "http://www.shangzongyu.com"
+title = "ZY - Code"
 enableRobotsTXT = true
 enableEmoji = true
 theme = "jane"
@@ -29,7 +29,7 @@ defaultContentLanguage = "zh-cn"  # Default language to use (if you setup multil
   filename = "sitemap.xml"
 
 [[menu.main]]             # config your menu              # 配置目录
-  name = "主页"
+  name = "Home"
   weight = 10
   identifier = "home"
   url = "/"
