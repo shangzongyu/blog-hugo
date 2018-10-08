@@ -1,0 +1,19 @@
+#+HUGO_BASE_DIR: ~/Dropbox/org-notes/blog
+#+HUGO_SECTION: ./post
+#+TITLE: macOS 搭建 MASM 的汇编环境
+#+DATE: 2018-10-08
+#+options: author:nil
+#+HUGO_AUTO_SET_LASTMOD: t
+#+HUGO_TAGS: 
+#+HUGO_CATEGORIES: 
+#+HUGO_DRAFT: true
+
+TODO...
+
+
+* Footnotes
+* COMMENT Local Variables                          :ARCHIVE:
+  # Local Variables:
+  # org-hugo-auto-export-on-save: t
+  # End:
+

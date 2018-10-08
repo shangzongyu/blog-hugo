@@ -1,0 +1,37 @@
+#+HUGO_BASE_DIR: ~/Code/blog
+#+HUGO_SECTION: ./post
+#+TITLE: 我的 Emacs 学习之路
+#+DATE: 2018-10-08
+#+options: author:nil
+#+HUGO_AUTO_SET_LASTMOD: t
+#+HUGO_TAGS: 
+#+HUGO_CATEGORIES: 
+#+HUGO_DRAFT: True
+
+学习 Emacs 对我来说真的不是一件容易的事情，不是说它多难学，而是自己一直学了又放弃、学了又放弃，就这样持续了4年多，今本上每年都要学习一次，然后又放弃。主要是我照抄别人的配置，经常出错误自己，而且自己有解决不了，再加上自己又会使用 Vim，这样自己就更容易回去了。
+
+自己曾经试过很多个编辑器，比如 Sublime Text、VSCode、Atom、Source Insight、UndeerStand 和其他编辑器等等。但是 Emacs 是唯一一个让我放不下，要想继续去学的编辑器。可能是因为它是“神之编辑器”，又或是它一个“操作系统”，总之心里就是有个想法，想把它学好，并使用起来（之前学习 Vim 之前都没有这种想法）。
+
+年龄大了点，不想折腾东西了，但是 Emacs 和 Linux 是我唯一想折腾的东西了。我不能放弃这两个东西，不让自己编程之路上有点寂寞。
+
+现在我使用的编辑器有三种：
+
+- Emacs/Vim：主要编辑器，用于编写一起
+- VSCode：主要用于快打开某个文件
+- JetBrains：用于大型项目
+
+每个工具都有自己的使用场景，学会使用工具，而不是被工具绑架。
+
+* 参考文献
+
+- [Survive.in.Emacs](media/15197795726201/Survive.in.Emacs.pdf)
+- [Spacemacs Quick start](media/15197795726201/Spacemacs%20Quick%20start.webarchive)
+- [Spacemacs documentation](media/15197795726201/Spacemacs%20documentation.webarchive)
+
+
+
+* Footnotes
+* COMMENT Local Variables                          :ARCHIVE:
+  # Local Variables:
+  # org-hugo-auto-export-on-save: t
+  # End:

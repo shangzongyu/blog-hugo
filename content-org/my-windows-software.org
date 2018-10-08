@@ -1,0 +1,115 @@
+#+HUGO_BASE_DIR: ~/Dropbox/org-notes/blog
+#+HUGO_SECTION: ./post
+#+TITLE: 我的 Windows 软件
+#+DATE: 2018-10-08
+#+options: author:nil
+#+HUGO_AUTO_SET_LASTMOD: t
+#+HUGO_TAGS: 
+#+HUGO_CATEGORIES: 
+#+HUGO_DRAFT: true
+
+* 系统工具
+  :PROPERTIES:
+  :CUSTOM_ID: 系统工具
+  :END:
+
+- 压缩/解压缩：BandZip
+- 云盘
+
+  - 百度云
+  - 坚果云
+
+- 杀毒：火绒
+- 清理软件：Dism++
+
+* 开发软件
+  :PROPERTIES:
+  :CUSTOM_ID: 开发软件
+  :END:
+
+- Visual Studio Code
+- Visual Studio - Microsoft的终极开发工具, 宇宙最强 IDE。
+- JetBrains
+
+  - GoLand
+  - CLion
+  - PyCharm
+
+- XShell
+- 虚拟化
+
+  - Vagrant
+  - VMWare
+  - VirtualBox
+  - Wireshark
+  - WSL
+
+- SourceInsight 4.0
+- GitHub Desktop
+- Pacdoc: 文档转换工具
+- TortoiseGit
+- WinSCP - 免费开源的 SFTP, FTP, WebDAV 和 SCP 客户端。
+- TortoiseGit - Git图形客户端，集成Shell工具包
+- TortoiseSVN - Subversion(SVN)的图形客户端
+- Vagrant - 一个用于创建和管理虚拟机的工具。
+- Velocity - 离线的API文档工具. (类似macOS上的 Dash)。
+- Wireshark - 一个网络协议分析工具。
+- Postman - 适合API开发的完整工具链，最常用的REST客户端。
+
+* 数据库
+  :PROPERTIES:
+  :CUSTOM_ID: 数据库
+  :END:
+
+- Navicat
+- heidisql
+
+* GFW
+  :PROPERTIES:
+  :CUSTOM_ID: gfw
+  :END:
+
+- shadowsocksr
+
+* 工具
+  :PROPERTIES:
+  :CUSTOM_ID: 工具
+  :END:
+
+- FreeFileSync -
+  文件和文件夹的简单备份解决方案，它支持源和目标之间的镜像/双向同步/更新。
+- WinDirStat - 磁盘使用情况查看器和清洁器。
+- Process Explorer - 功能强大的任务管理工具
+- Process Hacker -优秀且成熟的任务管理工具
+- WinSCP - 免费开源的 SFTP, FTP, WebDAV 和 SCP 客户端
+- MaxTo：分屏
+- Desktops v2.0
+- MacType
+- TrafficeMonitor：流量监控
+- f.lux：屏幕亮度调节
+- ZBar：
+- quicklook 空格预览
+- TranslucentTB: 透明TaskBar
+- Hyper
+- awesome-hyper
+- MobaXterm
+- Putty: Windows SSH 工具
+- TTyPlus：Putty 的 GUI 工具封装，打开多个 TAB
+- XShell
+- Babun: a windows shell you will love
+- FileZilla http://mingw-w64.org/doku.php/start
+  http://win-builds.org/doku.php
+
+* 参考
+  :PROPERTIES:
+  :CUSTOM_ID: 参考
+  :END:
+
+- https://marketplace.visualstudio.com
+- https://github.com/Awesome-Windows/Awesome/blob/master/README-cn.md
+
+* Footnotes
+* COMMENT Local Variables                          :ARCHIVE:
+  # Local Variables:
+  # org-hugo-auto-export-on-save: t
+  # End:
