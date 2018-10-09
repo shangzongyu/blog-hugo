@@ -1,8 +1,8 @@
 +++
 title = "使用 org-mode 和 hugo 写 BLOG"
 date = 2018-10-08
-lastmod = 2018-10-09T11:23:54+08:00
-categories = ["hugo", "org-mode"]
+lastmod = 2018-10-09T14:40:13+08:00
+tags = ["hugo", "org-mode"]
 draft = false
 +++
 
@@ -12,7 +12,7 @@ draft = false
 
 <!--more-->
 
-因此我就选择了以下的组合。
+因此我就选择了以下的组合:
 
 -   [hugo](https://gohugo.io/) : 使用 Golang 开发的静态 BLOG 工具
 -   [ox-hugo](https://ox-hugo.scripter.co/) : 用于把 `*.org` 转为 hugo 可以识别的 `*.md`
@@ -205,3 +205,4 @@ $0
 -   <https://ox-hugo.scripter.co/>
 -   <https://github.com/masasam/emacs-easy-hugo>
 -   <http://www.xianmin.org/post/ox-hugo/>
+-   <https://blog.coderzh.com/2015/08/29/hugo/>
