@@ -1,13 +1,16 @@
 +++
 title = "使用 org-mode 和 hugo 写 BLOG"
 date = 2018-10-08
-lastmod = 2018-10-09T00:25:04+08:00
+lastmod = 2018-10-09T11:07:19+08:00
+categories = ["hugo", "org-mode"]
 draft = false
 +++
 
 ## 缘起 {#缘起}
 
 `org-mode` 是一个很强的纯文本语法格式，自己非常喜欢 `org-mode` ，因此自己使用 `org-mode` 来记录自己的笔记。当自己要开始写 BLOG 的时候，就决定决定使用 `org-mode` 来作为自己 BLOG 管理工具，之前是使用 emacs 的插件 [blog-admin](https://github.com/CodeFalling/blog-admin) 和 [hexo](https://hexo.io/) 生成自己的 BLOG，但是自己不是很喜欢这种组合 [blog-admin](https://github.com/CodeFalling/blog-admin) 。有两个原因：一个是 [blog-admin](https://github.com/CodeFalling/blog-admin) 已经不怎么更新了，还有一个就是自己不怎么喜欢 [hexo](https://hexo.io/) (我自己不怎么喜欢node)。
+
+<!--more-->
 
 因此我就选择了以下的组合。
 

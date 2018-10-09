@@ -1,11 +1,11 @@
-#+HUGO_BASE_DIR: ~/Dropbox/org-notes/blog
+#+HUGO_BASE_DIR: ~/blog
 #+HUGO_SECTION: ./post
 #+TITLE: 关于笔记工具的
 #+DATE: 2018-10-08
 #+options: author:nil
 #+HUGO_AUTO_SET_LASTMOD: t
-#+HUGO_TAGS: 
-#+HUGO_CATEGORIES: 
+#+HUGO_TAGS:
+#+HUGO_CATEGORIES:
 #+HUGO_DRAFT: true
 
 * 印象笔记
@@ -21,7 +21,7 @@
   #+END_QUOTE
 
 ** 为什么不使用 Markdown
-   
+
    我自己也会使用 Markdown 写一些东西，整体下来感觉还是不错的。
 
 ** 为什么使用 org-mode

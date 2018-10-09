@@ -1,11 +1,11 @@
-#+HUGO_BASE_DIR: ~/Dropbox/org-notes/blog
+#+HUGO_BASE_DIR: ~/blog
 #+HUGO_SECTION: ./post
 #+TITLE: macOS 设置指南
 #+DATE: 2018-10-08
 #+options: author:nil
 #+HUGO_AUTO_SET_LASTMOD: t
-#+HUGO_TAGS: 
-#+HUGO_CATEGORIES: 
+#+HUGO_TAGS:
+#+HUGO_CATEGORIES:
 #+HUGO_DRAFT: true
 
 
@@ -296,7 +296,7 @@ alias -s tgz='tar -xzvf'
 alias -s bz2='tar -xjvf'
 
 zsh的厉害之处在于不仅可以设置通用别名，还能针对文件类型设置对应的打开程序，比如：
-alias -s html=mate      ## 意思就是你在命令行输入 hello.html，zsh会为你自动打开 TextMat 并读取 hello.html； 
+alias -s html=mate      ## 意思就是你在命令行输入 hello.html，zsh会为你自动打开 TextMat 并读取 hello.html；
 alias -s gz='tar -xzvf' ## 表示自动解压后缀为 gz 的压缩包。
 
 插件
@@ -571,7 +571,7 @@ $ mysql.server stop
 Shutting down MySQL
 .. SUCCESS!
 * 获取更多 mysql.server 的相关的命令：
-$ mysql.server --help                                                                                           
+$ mysql.server --help
 Usage: mysql.server  {start|stop|restart|reload|force-reload|status}  [ MySQL server options ]
 * 启动后就可以登录了，登录命令为:
 mysql -uroot -p ## 然后提示输入数据库密码，初始没有密码的情况下直接回车，就进入数据库了
@@ -669,20 +669,20 @@ nginx 403 forbidden
 * 缺少索引文件
 * 权限问题
 1: 缺少index.html或者index.php文件
-server {  
-    listen       80;  
-    server_name  localhost;  
-    index.html index.htm;  
-    root  /home/shine/www;  
+server {
+    listen       80;
+    server_name  localhost;
+    index.html index.htm;
+    root  /home/shine/www;
 }
 如果在/home/shine/www下面没有index.html,index.htm的时候，直接访问域名，找不到文件，会报403 forbidden。
 2: 权限问题
 因为权限问题引起的403，比较难查找，因为一时想不起
-server {  
-    listen       80;  
-    server_name  localhost;  
+server {
+    listen       80;
+    server_name  localhost;
     index.html index.htm;
-    root  /home/shine/www;  
+    root  /home/shine/www;
 }
 Web目录放在用户的所属目录下面，nginx的启动用户默认是nginx的，所以对目录根本没有读的权限，这样就会报403错误了。这个时候，把web目录的权限改大，或者是把nginx的启动用户改成目录的所属用户，重起一下就能解决。
 Apps
@@ -761,7 +761,7 @@ Apps
 - Numbers
 - Pages
 - Microsoft Office
- 
+
 * 其他
 
 

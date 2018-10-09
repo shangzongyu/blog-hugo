@@ -1,38 +1,41 @@
-#+HUGO_BASE_DIR: ~/Dropbox/org-notes/blog
+#+HUGO_BASE_DIR: ~/blog
 #+HUGO_SECTION: ./post
 #+TITLE: 使用 org-mode 和 hugo 写 BLOG
 #+DATE: 2018-10-08
 #+options: author:nil
 #+HUGO_AUTO_SET_LASTMOD: t
-#+HUGO_TAGS: 
-#+HUGO_CATEGORIES: 
+#+HUGO_TAGS:
+#+HUGO_CATEGORIES: hugo org-mode
 #+HUGO_DRAFT: false
 
 * 缘起
+
   =org-mode= 是一个很强的纯文本语法格式，自己非常喜欢 =org-mode= ，因此自己使用 =org-mode= 来记录自己的笔记。当自己要开始写 BLOG 的时候，就决定决定使用 =org-mode= 来作为自己 BLOG 管理工具，之前是使用 emacs 的插件 [[https://github.com/CodeFalling/blog-admin][blog-admin]] 和 [[https://hexo.io/][hexo]] 生成自己的 BLOG，但是自己不是很喜欢这种组合 [[https://github.com/CodeFalling/blog-admin][blog-admin]] 。有两个原因：一个是 [[https://github.com/CodeFalling/blog-admin][blog-admin]] 已经不怎么更新了，还有一个就是自己不怎么喜欢 [[https://hexo.io/][hexo]] (我自己不怎么喜欢node)。
 
+  <!--more-->
+
   因此我就选择了以下的组合。
-  
+
   - [[https://gohugo.io/][hugo]] : 使用 Golang 开发的静态 BLOG 工具
   - [[https://ox-hugo.scripter.co/][ox-hugo]] : 用于把 =*.org= 转为 hugo 可以识别的 =*.md=
   - [[https://github.com/masasam/emacs-easy-hugo][easy-hugo]]
   - 当然还少不了 [[https://orgmode.org/][orgmode]]
-  
-使用上面说的工具的组合，那么写一篇 BLOG 的变为如下：
+
+  使用上面说的工具的组合，那么写一篇 BLOG 的变为如下：
 
   1. 使用 org-mode heading 创建文章
   2. 写文章
   3. 使用 ox-hugo 生成 markdown 文档
   4. 使用 easy-hugo 预览(可选)
   5. 发布 BLOG
-  
 
-这里使用到了两个工具：ox-hugo 和 easy-hugo, 接下就介绍这两个工具。
 
-#+BEGIN_QUOTE
-其实 hugo 原生支持渲染 orgmode 文件，但是它所使用的 markdown 渲染引擎比 orgmode 的渲染引擎要强大的多，这是使用 ox-hugo 的原因之一。
-#+END_QUOTE
-  
+  这里使用到了两个工具：ox-hugo 和 easy-hugo, 接下就介绍这两个工具。
+
+  #+BEGIN_QUOTE
+  其实 hugo 原生支持渲染 orgmode 文件，但是它所使用的 markdown 渲染引擎比 orgmode 的渲染引擎要强大的多，这是使用 ox-hugo 的原因之一。
+  #+END_QUOTE
+
 * ox-hugo: org 为 markdown
 
   [[https://ox-hugo.scripter.co/][ox-hugo]] 可以将 org 文件转成 hugo 兼容的 markdown 文件, 也可生成前端格式文件（如 toml 和 yaml）。
@@ -146,8 +149,8 @@
 
 *** Org 文件中包含图片
 
-    把图片放到 org 文件目录下，使用如下语法就可以引用图片: 
-    
+    把图片放到 org 文件目录下，使用如下语法就可以引用图片:
+
     #+BEGIN_EXAMPLE
     [[file:image_path]]
     #+END_EXAMPLE
@@ -170,7 +173,7 @@
    # name: hugo
    # key: hugo
    # --
-   #+HUGO_BASE_DIR: ~/Dropbox/org-notes/blog
+   #+HUGO_BASE_DIR: ~/blog
    #+HUGO_SECTION: ./post
    #+TITLE: $1
    #+DATE: `(format-time-string "%Y-%m-%d")`
@@ -191,8 +194,8 @@
 
 * 参考
 
-- [[https://ox-hugo.scripter.co/]]
-- [[https://github.com/masasam/emacs-easy-hugo]]
+  - [[https://ox-hugo.scripter.co/]]
+  - [[https://github.com/masasam/emacs-easy-hugo]]
 
 * Footnotes
 * COMMENT Local Variables                          :ARCHIVE:
