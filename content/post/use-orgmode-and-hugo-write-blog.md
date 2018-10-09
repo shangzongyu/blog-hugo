@@ -1,7 +1,7 @@
 +++
 title = "使用 org-mode 和 hugo 写 BLOG"
 date = 2018-10-08
-lastmod = 2018-10-09T11:07:19+08:00
+lastmod = 2018-10-09T11:23:54+08:00
 categories = ["hugo", "org-mode"]
 draft = false
 +++
@@ -180,7 +180,7 @@ easy-hugo 是 hugo 官方推荐的用于 emacs 管理 hugo 的插件。
 # name: hugo
 # key: hugo
 # --
-#+HUGO_BASE_DIR: ~/Dropbox/org-notes/blog
+#+HUGO_BASE_DIR: ~/blog
 #+HUGO_SECTION: ./post
 #+TITLE: $1
 #+DATE: `(format-time-string "%Y-%m-%d")`
@@ -204,3 +204,4 @@ $0
 
 -   <https://ox-hugo.scripter.co/>
 -   <https://github.com/masasam/emacs-easy-hugo>
+-   <http://www.xianmin.org/post/ox-hugo/>

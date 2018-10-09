@@ -11,26 +11,24 @@
 * 语言插件
 
 ** C/C++ for Visual Studio Code
-
 ** Python extension for Visual Studio Code
-
 ** Golang
 
    #+BEGIN_SRC golang
+    go get -u -v github.com/nsf/gocode
+    go get -u -v github.com/rogpeppe/godef
+    go get -u -v github.com/golang/lint/golint
+    go get -u -v github.com/lukehoban/go-outline
+    go get -u -v github.com/tpng/gopkgs
+    go get -u -v github.com/newhook/go-symbols
+    go get -u -v github.com/alecthomas/gometalinter
+    go get -u -v golang.org/x/tools/cmd/guru
+    go get -u -v golang.org/x/tools/cmd/goimports
+    go get -u -v golang.org/x/tools/cmd/gorename
+    go get -u -v sourcegraph.com/sqs/goreturns
 
-go get -u -v github.com/nsf/gocode
-go get -u -v github.com/rogpeppe/godef
-go get -u -v github.com/golang/lint/golint
-go get -u -v github.com/lukehoban/go-outline
-go get -u -v github.com/tpng/gopkgs
-go get -u -v github.com/newhook/go-symbols
-go get -u -v github.com/alecthomas/gometalinter
-go get -u -v golang.org/x/tools/cmd/guru
-go get -u -v golang.org/x/tools/cmd/goimports
-go get -u -v golang.org/x/tools/cmd/gorename
-go get -u -v sourcegraph.com/sqs/goreturns
-//如果需要在vscode中调试go程序，需要下载安装dlv
-go install github.com/derekparker/delve/cmd/dlv
+    //如果需要在vscode中调试go程序，需要下载安装dlv
+    go install github.com/derekparker/delve/cmd/dlv
    #+END_SRC
 
 *** Golang 的配置
@@ -50,9 +48,8 @@ go install github.com/derekparker/delve/cmd/dlv
   - Material Theme
   - Material Icon Theme
 
-
-
-
+* 完整配置
+  TODO...
 * Footnotes
 * COMMENT Local Variables                          :ARCHIVE:
   # Local Variables:

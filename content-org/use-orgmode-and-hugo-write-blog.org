@@ -196,6 +196,8 @@
 
   - [[https://ox-hugo.scripter.co/]]
   - [[https://github.com/masasam/emacs-easy-hugo]]
+  - [[http://www.xianmin.org/post/ox-hugo/]]
+  - [[https://blog.coderzh.com/2015/08/29/hugo/]]
 
 * Footnotes
 * COMMENT Local Variables                          :ARCHIVE:

@@ -13,7 +13,7 @@
   #+BEGIN_QUOTE
   主要是用于收集和整理自己从 Internet 上收藏的文章。
   #+END_QUOTE
-
+  
 * Emacs/org-mode
 
   #+BEGIN_QUOTE
@@ -27,11 +27,6 @@
 ** 为什么使用 org-mode
 
    Markdown 是不错，但是 org-mode 和 emacs 搭配真的天衣无缝呀。表格的补全，等功能真的比 markdown 好用多了。
-
-
-
-
-
 
 * Footnotes
 * COMMENT Local Variables                          :ARCHIVE:
