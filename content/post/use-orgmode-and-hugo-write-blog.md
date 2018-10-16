@@ -1,10 +1,17 @@
 +++
-title = "使用 org-mode 和 hugo 写 BLOG"
-date = 2018-10-08
-lastmod = 2018-10-09T14:40:13+08:00
-tags = ["hugo", "org-mode"]
-draft = false
+title = "使用 hugo 和 ox-hugo 搭建自己的 BLOG"
+date = 2018-10-16T00:00:00+08:00
+lastmod = 2018-10-16T17:40:26+08:00
+tags = ["emacs", "orgmode", "hugo"]
+draft = true
+weight = 2001
 +++
+
+-   为什么要写这个文章？
+-   为什么使用 hugo 而不是 hexo 或者其他的？
+    > hexo node 写的，环境配置等麻烦
+-   为什么使用 org-mode , 而不是 markdown, 明明 Markdown 更有名
+
 
 ## 缘起 {#缘起}
 
@@ -40,7 +47,7 @@ draft = false
 
 至此，你就已经可以按照常规的方法来预览、发布你的博文了。不过还有一个扩展没有介绍—— easy-hugo 。
 
-> 导出的 markdown 文件会编译不过，原因是因为生成的 `author` 标签， `hugo` 报错。因此可以把这个 `author` 禁止掉就可以了。
+> 导出的 markdown 文件会编译不过，原因是因为生成的 `author` 标签， `hugo` 报错。因此可以把这个 `author` 禁止掉就可以了 ( `#+options: author:nil` )。
 
 
 ### 入门 {#入门}
@@ -48,9 +55,13 @@ draft = false
 
 #### ScreenShot {#screenshot}
 
-{{< figure src="/ox-hugo/one-post-per-subtree.png" >}}
+ox-hugo 提供了两种工作流来写 BLOG
 
-{{< figure src="/ox-hugo/one-post-per-file.png" >}}
+方法1:
+![](/ox-hugo/one-post-per-subtree.png)
+
+方法2:
+![](/ox-hugo/one-post-per-file.png)
 
 
 #### 安装 {#安装}
@@ -87,6 +98,11 @@ draft = false
 
 #### 基于单个文件的导出 {#基于单个文件的导出}
 
+<div class="table-caption">
+  <span class="table-number">Table 1</span>:
+  Hugo front-matter translation for subtree-based exports
+</div>
+
 | Hugo front-matter (TOML)     | Org                                  |
 |------------------------------|--------------------------------------|
 | title = "foo"                | `#+title: foo`                       |
@@ -107,6 +123,11 @@ draft = false
 #### 格式化 {#格式化}
 
 下表是 orgmode 标记语言转换 markdown 标记语言的格式:
+
+<div class="table-caption">
+  <span class="table-number">Table 2</span>:
+  Org markup to Markdown markup
+</div>
 
 | Org                | Markdown                                                       |
 |--------------------|----------------------------------------------------------------|
@@ -157,17 +178,6 @@ draft = false
 ```text
 [[file:image_path]]
 ```
-
-
-## easy-hugo: 管理博客 {#easy-hugo-管理博客}
-
-```text
-  可选
-```
-
-easy-hugo 是 hugo 官方推荐的用于 emacs 管理 hugo 的插件。
-
-`M-x easy-hugo`
 
 
 ## 附录 {#附录}
