@@ -22,68 +22,26 @@ PygmentsOptions = "linenos=table"
 # use Chinese translation
 defaultContentLanguage = "zh-cn"  # Default language to use (if you setup multilingual support)
 
-[langusges]
-[languages.en]
-  title = "ZY - 我的代程序世界"
-  languageName = "English"
-  weight = 1
-[languages.zh-cn]
-  title = "ZY - 我的代程序世界"
-  languageName = "中文"
-  weight = 2
-
-[[languages.en.menu.main]]
-  name = "Home"
-  weight = 10
-  identifier = "home"
-  url = "/"
-
-[[languages.en.menu.main]]
-  name = "Docs"
-  weight = 11
-  identifier = "docs"
-  url = "/categories/docs/"
-
-[[languages.en.menu.main]]
-  name = "Archives"
-  weight = 20
-  identifier = "archives"
-  url = "post/"
-[[languages.en.menu.main]]
-  name = "Tags"
-  weight = 30
-  identifier = "tags"
-  url = "tags/"
-[[languages.en.menu.main]]
-  name = "Categories"
-  weight = 40
-  identifier = "categories"
-  url = "categories/"
-[[languages.en.menu.main]]
-  name = "external-link"
-  weight = 50
-  url = "https://gohugo.io"
-
 [[languages.zh-cn.menu.main]]
   name = "主页"
   weight = 10
   identifier = "home"
-  url = "zh-cn/"
+  url = "/"
 [[languages.zh-cn.menu.main]]
   name = "归档"
   weight = 20
   identifier = "archives"
-  url = "zh-cn/post/"
+  url = "/post/"
 [[languages.zh-cn.menu.main]]
   name = "标签"
   weight = 30
   identifier = "tags"
-  url = "zh-cn/tags/"
+  url = "/tags/"
 [[languages.zh-cn.menu.main]]
   name = "分类"
   weight = 40
   identifier = "categories"
-  url = "zh-cn/categories/"
+  url = "/categories/"
 [[languages.zh-cn.menu.main]]
   name = "外部链接"
   weight = 50
