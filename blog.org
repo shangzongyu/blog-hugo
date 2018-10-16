@@ -1,0 +1,999 @@
+#+hugo_base_dir: ~/blog
+#+hugo_section: post
+#+hugo_weight: auto
+#+hugo_auto_set_lastmod: t
+#+seq_todo: TODO DRAFT DONE
+#+options: author:nil
+
+* Linux
+** TODO Linux 搭建 APUE 的环境
+** TODO Linux 搭建 UNP 的环境
+
+** TODO Linux 生成动态库和静态库
+
+   https://app.yinxiang.com/shard/s18/nl/19217884/e5059d86-4c44-4c04-af89-cd764261341b/
+
+* macOS
+** TODO macOS 搭建 MASM 的汇编环境                                 :macOS:OS:
+   https://app.yinxiang.com/shard/s18/nl/19217884/5d2e04c6-f98b-453a-a9d8-07ec1c6708bf/
+** TODO macOS 的目录结构                                           :macOS:OS:
+
+   =Mac= 机器主板使用了 =Intel= 主导的 =EFI= 标准，硬盘分区格式采用 =GPT=。这种 =EFI+GPT= 的方式相比传统的 =BIOS＋MBR= 的方式有很多好处。
+
+*** 硬盘分区
+
+    默认情况下，=macOS= 把硬盘分成了3个 =GPT= 分区。
+
+    1. 第一个分区：就是 GPT 标准要求的 ESP 分区，这个分区很小，200MB，FAT 文件系统格式。按照 EFI 惯例，应该用来存放操作系统的引导程序。但是苹果没有遵守这个惯例，它的引导程序 =boot.efi= 并没有存放在 ESP 中，这个分区只是被苹果用来存放升级固件的文件。
+    2. 第二个分区：就是*macOS 的系统分区*，它占用了大部分磁盘空间，用来存放整个 =macOS= 系统和用户数据，分区文件系统格式为 =HFS+=。
+
+    - 第三个分区：是*系统恢复分区*，里面存放了一个精简的 =macOS= 系统，用来完成系统恢复、安装等任务，类似于 =WindowsPE=。默认情况下，=macOS= 自带的磁盘工具并不能显示 ESP 分区和恢复分区，需要开启 DEBUG 菜单才可以。开启方法为：=defaults write com.apple.DiskUtility DUDebugMenuEnabled 1=
+
+*** macOS 系统分区的目录结构
+
+    =macOS= 有着很深的 =Unix= 血统，所以其目录结构基本符合 Unix 系统目录结构。但是有很多目录在Finder 中并看不到，这是因为这些目录的被设置了隐藏属性，我们可以在终端窗口中利用 Unix 命令查看。
+
+*** 符合 Unix 传统的目录
+
+    - =/=: 根目录(root, the Local Domain)
+    - =/bin=: 传统 =Unix= 命令的存放目录
+    - =/sbin=: 传统 =Unix= 管理类命令存放目录，只有 =root= 才能使用的命令
+    - =/usr=: 第三方程序安装目录，=/usr/bin=, =/usr/sbin=, =/usr/lib=，其中 =/usr/lib= 目录中存放了共享库（动态链接库）
+    - =/etc=: 标准 Unix 系统配置文件存放目录，如用户密码文件 j=/etc/passwd=。此目录实际为指向 =/private/etc= 的链接。
+    - =/dev=: 设备文件存放目录
+    - =/tmp=: 临时文件存放目录，其权限为所有人任意读写。此目录实际为指向 =/private/tmp= 的链接。
+    - =/var=: 存放经常变化的文件，如日志文件。此目录实际为指向 =/private/var= 的链接。
+
+*** macOS 特有的目录
+
+    =macOS= 系统中，除了标准的 =Unix= 目录外，还增加了特有的目录。
+
+    - =/Applications=: 应用程序目录，默认所有的 =GUI= 应用程序都安装在这里(GUI Application)
+    - =/Applications/Utilities=: =GUI= 应用程序工具集(GUI utilities)
+    - =/Developer=: =Xcode= 开发这工具（Xcode developer tools)
+    - =/Library=: 系统的数据文件、帮助文件、文档等等（User installed frameworks)
+    - =/Network=: 网络节点存放目录(the Network domian)
+    - =/System=: 只包含一个名为 =Library= 的目录，这个子目录中存放了系统的绝大部分组件，如各种=framework=，以及内核模块，字体文件等等
+    - =/Users=: 存放用户的个人资料和配置。每个用户有自己的单独目录(Home directories, the User domain)
+    - =~/Desktop=: 用户的桌面(Your desktop)
+    - =~/Document=: 用户的文档目录(Your documents)
+    - =~/Movies=: 用户的电影目录(Your movies directory: iMovie uses it by default)
+    - =~/Music=: 用户的音乐目录(Your music directory: iTunes uses it by default)
+    - =~/Pictures=: 用户的图片目录(Your picture directory: iPhoto uses it by default)
+    - =~/Public=: 用户共享目录(For sharing: contents visible to others)
+    - =~/Sites=: 用户搭建网站的目录(Your www(apache) diectory)
+    - =/Volumes=: 文件系统挂载点存放目录，例如U盘
+    - =/cores=: 内核转储文件存放目录。当一个进程崩溃时，如果系统允许则会产生转储文件。
+    - =/private=: 里面的子目录存放了=/tmp=, =/var=, =/etc=等链接目录的目标目录
+** TODO macOS 的 luanchctl
+* FreeeBSD
+  TODO...
+* Compile and link
+** TODO GCC 和 Clang 命令                                   :gcc:clang:@编译:
+
+   主要介绍 编译工具 Gcc 和 Clang 的常用选项。
+
+   <!--more-->
+
+*** Linux 下 使用 Gcc
+*** macOS 下 使用 Clang
+** TODO GDB 和 LLDB 命令总结                                 :gdb:lldb:@编译:
+  :PROPERTIES:
+  :EXPORT_FILE_NAME: gdb-and-lldb-usage
+  :EXPORT_DATE: <2018-10-16 Tue>
+  :END:
+
+   主要介调试工具 =gdb= 和 ==lldb= 的常用选项。
+
+   <!--more-->
+
+*** Linux 的 GDB 调试
+**** 1. 运行 GDB
+
+     启动 GDB 的方法有以下几种：
+
+     - =gdb <program>= ：program 是用户的执行文件，一般在当然目录下。例如： =gdb hello=
+     - =gdb <program> core= ：用 GDB 同时调试一个运行程序和 core 文件，core 是程序非法执行后 core dump 后产生的文件。例如： =gdb hello –c core.xxxxx= ,其中xxxxx为进程的pid
+     - =gdb <program> <PID>= ： 如果你的程序是一个服务程序，那么你可以指定这个服务程序运行时的进程ID。GDB 会自动 =attach= 上去，并调试他。program 应该在 PATH 环境变量中搜索得到。 例如： =gdb –p 10000=
+
+**** 2. 运行命令
+
+     | 命令        | 功能                                                   |
+     |-------------+--------------------------------------------------------|
+     | =run param= | 运行程序或重新运行程序，可以带参数，相当于命令行参数。 |
+     | =Ctrl+C=    | 程序暂停，可以操作gdb的命令。                          |
+     | =continue=  | 继续运行                                               |
+     | =quit=      | 退出gdb                                                |
+
+**** 3. 设置断点
+
+     | 命令                         | 功能                                                                                                                           |
+     |------------------------------+--------------------------------------------------------------------------------------------------------------------------------|
+     | =break <function>=           | 在进入指定函数时停住。                                                                                                         |
+     | =break <linenum>=            | 在指定行号停住。                                                                                                               |
+     | =break +/-offset=            | 在当前行号的前面或后面的offset行停住。offiset为自然数。                                                                        |
+     | =break filename:linenum=     | 在源文件filename的linenum行处停住。                                                                                            |
+     | =break filename:function=    | 在源文件filename的function函数的入口处停住。                                                                                   |
+     | =break *address=             | 在程序运行的内存地址处停住。                                                                                                   |
+     | =break=                      | break命令没有参数时，表示在下一条指令处停住。                                                                                  |
+     | =break ... if <condition>=   | ...是文件名行号等参数，condition表示条件，在条件成立时停住。比如在循环境体中，可以设置break if i=100，表示当i为100时停住程序。 |
+     | =info break/breakpoints [n]= | 查看断点时，可使用info命令。n表示断点号                                                                                        |
+     
+**** 4. 设置观察点
+
+     | 命令               | 功能                                                                     |
+     |--------------------+--------------------------------------------------------------------------|
+     | =watch <expr>=     | 为表达式（变量）expr设置一个观察点。一旦表达式值有变化时，马上停住程序。 |
+     | =rwatch <expr>=    | 当表达式（变量）expr被读时，停住程序。                                   |
+     | =awatch <expr>=    | 当表达式（变量）的值被读或被写时，停住程序。                             |
+     | =info watchpoints= | 列出当前所设置了的所有观察点。                                           |
+
+**** 5. 断点维护命令
+
+     | 命令                                   | 功能                                                                                                                                                                            |
+     |----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     | clear                                  | 清除所有的已定义的停止点。                                                                                                                                                      |
+     | clear <function>                       | 清除所有的已定义的停止点。                                                                                                                                                      |
+     | clear <filename:function>              | 清除所有的已定义的停止点。                                                                                                                                                      |
+     | clear <linenum>                        | 清除所有的已定义的停止点。                                                                                                                                                      |
+     | clear <filename:linenum>               | 清除所有的已定义的停止点。                                                                                                                                                      |
+     | delete [breakpoints] [range...]        | 删除指定的断点，breakpoints为断点号。如果不指定断点号，则表示删除所有的断点。range 表示断点号的范围（如：3-7）。其简写命令为d。                                                 |
+     | disable [breakpoints] [range...]       | disable所指定的停止点，breakpoints为停止点号。如果什么都不指定，表示disable所有的停止点。简写命令是dis。                                                                        |
+     | 1.enable [breakpoints] [range...]      | 1.enable所指定的停止点，breakpoints为停止点号。                                                                                                                                 |
+     | 2.enable [breakpoints] once range...   | 2.enable所指定的停止点一次，当程序停止后，该停止点马上被GDB自动disable。                                                                                                        |
+     | 3.enable [breakpoints] delete range... | 3.enable所指定的停止点一次，当程序停止后，该停止点马上被GDB自动删除。                                                                                                           |
+     | continue [ignore-count]                | 恢复程序运行，直到程序结束，或是下一个断点到来。ignore-count表示忽略其后的断点次数。continue，c，fg三个命令都是一样的意思。                                                     |
+     | c [ignore-count]                       | 恢复程序运行，直到程序结束，或是下一个断点到来。ignore-count表示忽略其后的断点次数。continue，c，fg三个命令都是一样的意思。                                                     |
+     | fg [ignore-count]                      | 恢复程序运行，直到程序结束，或是下一个断点到来。ignore-count表示忽略其后的断点次数。continue，c，fg三个命令都是一样的意思。                                                     |
+     | step <count>                           | 单步跟踪，如果有函数调用，他会进入该函数。进入函数的前提是，此函数被编译有debug信息。后面可以加count也可以不加，不加表示一条条地执行，加表示执行后面的count条指令，然后再停住。 |
+     | next <count>                           | 同样单步跟踪，如果有函数调用，他不会进入该函数。后面可以加count也可以不加，不加表示一条条地执行，加表示执行后面的count条指令，然后再停住。                                      |
+     | set step-mode                          | 打开/关闭step-mode模式，于是，在进行单步跟踪时，程序不会因为没有debug信息而不停住。这个参数有很利于查看机器码。                                                                 |
+     | set step-mode on                       | 打开/关闭step-mode模式，于是，在进行单步跟踪时，程序不会因为没有debug信息而不停住。这个参数有很利于查看机器码。                                                                 |
+     | set step-mod off                       | 打开/关闭step-mode模式，于是，在进行单步跟踪时，程序不会因为没有debug信息而不停住。这个参数有很利于查看机器码。                                                                 |
+     | finish                                 | 运行程序，直到当前函数完成返回。并打印函数返回时的堆栈地址和返回值及参数值等信息。                                                                                              |
+     | until 或 u                             | 当你厌倦了在一个循环体内单步跟踪时，这个命令可以运行程序直到退出循环体。                                                                                                        |
+     | stepi 或 si                            | 单步跟踪一条机器指令！一条程序代码有可能由数条机器指令完成，stepi和nexti可以单步执行机器指令。                                                                                  |
+     | nexti 或 ni                            | 单步跟踪一条机器指令！一条程序代码有可能由数条机器指令完成，stepi和nexti可以单步执行机器指令。                                                                                  |
+     为断点号bnum指写一个命令列表。当程序被该断点停住时，gdb会依次运行命令列表中的命令。 
+
+     #+BEGIN_SRC 
+commands [bnum]
+ ... command-list ...
+end
+     #+END_SRC  
+
+**** 6. 搜集任务信息
+
+     | 命令                               | 功能                                                                                                             |
+     |------------------------------------+------------------------------------------------------------------------------------------------------------------|
+     | =backtrace/bt  <+-n>=              | 打印当前的函数调用栈的所有信息。                                                                                 |
+     |------------------------------------+------------------------------------------------------------------------------------------------------------------|
+     | =frame/f <n>= / =select-frame <n>= | 切换当前栈，无参数会打印出这些信息：栈的层编号，当前的函数名，函数参数值，函数所在文件及行号，函数执行到的语句。 |
+     | =up/up-silently <n>=               | 表示向栈的上面移动n层，可以不打n，表示向上移动一层。                                                             |
+     | =down/down-silently <n>=           | 表示向栈的下面移动n层，可以不打n，表示向下移动一层。                                                             |
+     |------------------------------------+------------------------------------------------------------------------------------------------------------------|
+     | =info frame/f=                     | 这个命令会打印出更为详细的当前栈层的信息，只不过，大多数都是运行时的内内地址。                                   |
+     | =info args=                        | 打印出当前函数的参数名及其值。                                                                                   |
+     | =info locals=                      | 打印出当前函数中所有局部变量及其值。                                                                             |
+     | =info catch=                       | 打印出当前的函数中的异常处理信息。                                                                               |
+     | =info line linespec=               | 打印行 linespec源码编译出的代码的起始和结束地址。                                                                |
+     | =info register=                    | 打印出除浮点数之外的所有寄存器的名称和值。                                                                       |
+     | =info all-registers=               | 查看所有寄存器的情况（包括浮点寄存器）。                                                                         |
+     | =info registers regname=           | 查看所指定的寄存器的情况。                                                                                       |
+     |------------------------------------+------------------------------------------------------------------------------------------------------------------|
+     | =set listsize <count>=             | set命令设置一次显示源代码的行数。                                                                                |
+     |------------------------------------+------------------------------------------------------------------------------------------------------------------|
+     | =list <linenum>=                   | 显示程序第linenum行的周围的源程序。                                                                              |
+     | =list <first>, <last>=             | 显示从first行到last行之间的源代码。                                                                              |
+     | =list , <last>=                    |                                                                                                                  |
+     | =list <function>=                  | 显示函数 funciont 的源代码                                                                                       |
+     |------------------------------------+------------------------------------------------------------------------------------------------------------------|
+     | =forward-search <regexp>=          | 搜索源代码。                                                                                                     |
+     | =search <regexp>=                  | 搜索源代码。                                                                                                     |
+     | =reverse-search <regexp>p=         | 搜索源代码。                                                                                                     |
+     | =directory <dirname ... >=         | 指定源文件的路径。                                                                                               |
+     | =dir <dirname ... >=               | 指定源文件的路径。                                                                                               |
+     | =show directories=                 | 指定源文件的路径。                                                                                               |
+     |------------------------------------+------------------------------------------------------------------------------------------------------------------|
+     | =call <expr>=                      | 表达式中可以一是函数，以此达到强制调用函数的目的。并显示函数的返回值，如果函数返回值是void，那么就不显示。       |
+     | =return= / =return <expression>=   | 使用return命令取消当前函数的执行，并立即返回，如果指定了<expression>，那么该表达式的值会被认作函数的返回值。     |
+
+**** 7. 其它命令
+
+     | 命令                              | 功能                                                                                                   |
+     |-----------------------------------+--------------------------------------------------------------------------------------------------------|
+     | disassemble                       | 把某范围内存内容反编译为机器指令。缺省情况下，内存范围是选定帧的程序计数器周围的函数。                 |
+     |                                   | 只一个参数时，参数值为程序计数器的值；两个参数则是指定地址范围。                                       |
+     |-----------------------------------+--------------------------------------------------------------------------------------------------------|
+     | =print exp=                       | 查看变量的值。                                                                                         |
+     |-----------------------------------+--------------------------------------------------------------------------------------------------------|
+     | =print /f exp=                    |                                                                                                        |
+     | =print var@ len=                  |                                                                                                        |
+     | =print file::variable=            | - exp是表达式，/f指定打印时的格式。                                                                    |
+     | =print function::variable=        | - exp是C语言形式的表达式，功能很强大，如可以查看变量地址&var。                                         |
+     | =set/show print address=          | - exp表达式为C格式的赋值语句，这样就可以完成变量的赋值。                                               |
+     | =set/show print array=            | - print只能查看变量在内存中的表示，不能查看绝对地址的内存值，var是变量表达式，len查看表达式的个数 。   |
+     | =set/show print elements/=        |                                                                                                        |
+     | =null-stop/pretty/union/=         |                                                                                                        |
+     | =object/static-members/=          |                                                                                                        |
+     | =vtbl <on/off>=                   |                                                                                                        |
+     |-----------------------------------+--------------------------------------------------------------------------------------------------------|
+     | =::=                              | 指定一个在文件或是一个函数中的变量                                                                     |
+     |-----------------------------------+--------------------------------------------------------------------------------------------------------|
+     | =x/nfu addr=, 常用 =：x /64 addr= | 使用x命令可以按格式查看绝对地址的内存信息，内存信息按NFU格式打印到控制台。                             |
+     |                                   | nfu 是格式表达式:                                                                                      |
+     |                                   | n：查看内存的个数                                                                                      |
+     |                                   | f：显示格式，显示格式可以是i（10进制），x（16进制）。                                                  |
+     |                                   | u：按什么数据类型显示：                                                                                |
+     |                                   | u：可以是下面几种类型：                                                                                |
+     |                                   | b：1字节显示（Bytes）。                                                                                |
+     |                                   | h：2字节显示（Halfwords）。                                                                            |
+     |                                   | w：4字节显示（Words），默认显示类型为4字节显示。                                                       |
+     |                                   | g：8字节显示（Giant words）。                                                                          |
+     | =display/<fmt> <expr>=            | expr是一个表达式，fmt表示显示的格式，addr表示内存地址                                                  |
+     | =display/<fmt> <addr>=            | 当你用display设定好了一个或多个表达式后，只要你的程序被停下来，GDB会自动显示你所设置的这些表达式的值。 |
+     | =undisplay <dnums...>=            |                                                                                                        |
+     | =disable/enable/delete=           |                                                                                                        |
+     | =display <dnums...>=              |                                                                                                        |
+     | =info display=                    |                                                                                                        |
+     | how convenience                   | 该命令查看当前所设置的所有的环境变量，环境变量可以通过set命令设置。                                    |
+
+**** 8. 总结
+
+     - 查看源代码： =list= or =l=
+     - 断点操作类:
+       - 符号名设置断点： =break main= 或 =b main=
+       - 查看所有断点： =info breakpoints= 或 =info b=
+       - 根据编号删除断点： =delete 1=
+       - 删除所有断点： =delete= 或 =d=
+     - 查看寄存器类： =info register= 或 =info r=
+     - 查看值类：
+       - 查看函数的反汇编代码： =disas=
+       - 列出所有的局部变量： =info locals=
+       - 列出所有参数： =info args=
+       - 运行期进程的内存映射： =info proc mappings=
+       - 查看地址： =p/x $rbp= (查看一个特定的寄存器)
+       - 查看地址的值：
+         - =x/1xg $rsp= (查看地址的值是否符合预期)
+         - =x/1xg $rsp+0x18= (根据 寄存器+偏移量寻址)
+       - 查看调用栈帧： =bt= 或 =backtrace=
+       - 查看符号地址： =info address main.main=
+       - 根据符号地址反向查看符号详情： =info symbol 0x401180=
+     - 单步机器指令
+       - =si= 单步进入
+       - =ni= 单步执行 next
+       - =ret= 单步返回
+
+     - 线程调试：
+
+       https://blog.csdn.net/Jin_Kwok/article/details/80104022
+
+** TODO GDB 跟踪方法调用堆栈环境的搭建                            :gdb:@编译:
+   
+    在 macOS 14.0 下使用 Vagrant + Ubuntu 16.04 + go 1.11
+   
+**** 安装必要命令行工具
+
+     #+BEGIN_SRC sh
+       # apt update
+       # apt-get install gcc gdb binutils make python3-dbg git dstat sysstat htop curl wget upx tree
+     #+END_SRC
+
+     #+BEGIN_QUOTE
+     这个安装必要工具可以放在 Vagrant 的配置文件里。
+     #+END_QUOTE
+
+**** 安装 Go
+
+     #+BEGIN_SRC sh
+       vagrant@trusty32:~$ wget https://dl.google.com/go/go1.11.1.linux-386.tar.gz
+       vagrant@trusty32:~$ tar -zxvf go1.11.1.linux-386.tar.gz -C /usr/local
+     #+END_SRC
+    
+**** 配置 Go 环境变量
+
+     #+BEGIN_SRC sh
+       vagrant@trusty32:~$ echo "export GOROOT=/usr/local/go" >> ~/.bashrc
+       vagrant@trusty32:~$ echo "export GOBIN=/usr/local/go/bin" >> ~/.bashrc
+       vagrant@trusty32:~$ echo "export PATH=/usr/local/go/bin:$PATH" >> ~/.bashrc
+     #+END_SRC
+**** 验证 Go 的配置
+
+     #+BEGIN_SRC sh
+       vagrant@trusty32:~$ source ~/.bashrc
+       vagrant@trusty32:~$ go env
+       GOARCH="386"
+       GOBIN="/usr/local/go/bin"
+       GOCACHE="/home/vagrant/.cache/go-build"
+       GOEXE=""
+       GOFLAGS=""
+       GOHOSTARCH="386"
+       GOHOSTOS="linux"
+       GOOS="linux"
+       GOPATH="/home/vagrant/go"
+       GOPROXY=""
+       GORACE=""
+       GOROOT="/usr/local/go"
+       GOTMPDIR=""
+       GOTOOLDIR="/usr/local/go/pkg/tool/linux_386"
+       GCCGO="gccgo"
+       GO386="sse2"
+       CC="gcc"
+       CXX="g++"
+       CGO_ENABLED="1"
+       GOMOD=""
+       CGO_CFLAGS="-g -O2"
+       CGO_CPPFLAGS=""
+       CGO_CXXFLAGS="-g -O2"
+       CGO_FFLAGS="-g -O2"
+       CGO_LDFLAGS="-g -O2"
+       PKG_CONFIG="pkg-config"
+       GOGCCFLAGS="-fPIC -m32 -pthread -fmessage-length=0 -fdebug-prefix-map=/tmp/go-build588680021=/tmp/go-build -gno-record-gcc-switches"
+     #+END_SRC
+
+**** 配置 Go workspace 目录
+
+     #+BEGIN_SRC sh
+     建立 Go 工作空间目录，完成后如下所示
+     root@trusty64-135:/go# tree
+     .
+     ├── go.deps
+     │   ├── bin
+     │   ├── pkg
+     │   └── src
+     └── go.lesson
+         ├── bin
+         ├── pkg
+         └── src
+             └── function-call-stack
+                 ├── Makefile
+                 ├── test.c
+                 └── test.go
+     #+END_SRC
+
+**** Vagrant 配置文件
+
+     #+BEGIN_SRC ruby
+       # -*- mode: ruby -*-
+       # vi: set ft=ruby :
+
+       Vagrant.configure("2") do |config|
+         config.vm.hostname = "trusty32"
+         config.vm.box = "ubuntu/trusty32"
+         config.vm.synced_folder "./", "/vagrant_data"
+         config.vm.provision "shell", inline: <<-SHELL
+           apt-get update
+           apt-get install -y gcc gdb binutils make python3-dbg git dstat sysstat htop curl wget upx tree
+         SHELL
+       end
+     #+END_SRC
+
+** TODO GDB 和 LLDB 查看函数调用栈                           :gdb:lldb:@编译:
+*** 源文件
+
+    C 源文件如下：
+
+    #+BEGIN_SRC c -n
+      #include <stdio.h>
+      #include <stdlib.h>
+
+      __attribute__((noinline)) void info(int x)
+      {
+          printf("info %d\n", x);
+      }
+
+      __attribute__((noinline)) int add(int x, int y)
+      {
+          int z = x + y;
+          info(z);
+
+          return z;
+      }
+
+      int main(int argc, char **argv)
+      {
+          int x = 0x100;
+          int y = 0x200;
+          int z = add(x, y);
+
+          printf("%d\n", z);
+
+          return 0;
+      }
+    #+END_SRC
+
+    Go 源码如下:
+
+    #+BEGIN_SRC go
+      package main
+
+      import "log"
+
+      func info(x int) {
+          log.Printf("info %d\n", x)
+      }
+
+      func add(x, y int) int {
+          z := x + y
+          info(z)
+
+          return z
+      }
+
+      func main() {
+          x, y := 0x100, 0x200
+          z := add(x, y)
+
+          println(z)
+      }
+
+    #+END_SRC
+
+*** 说明
+
+    本篇涵盖使用 GDB 查看函数调用栈帧，理解函数调用过程，并学习 GDB 相关指令
+
+    Go 的符号和 C 的符号不一样，这个要注意下
+
+*** C 语言示例
+**** GDB 调试
+
+    编译文件:
+
+    #+BEGIN_SRC sh
+    gcc -g -O0 -o test test.c # -O0 阻止编译器优化
+    #+END_SRC
+
+    使用 gdb 调试:
+
+    #+BEGIN_SRC sh
+      vagrant@trusty32:~/function-call-stack$ gdb ctest
+      GNU gdb (Ubuntu 7.7.1-0ubuntu5~14.04.3) 7.7.1
+      Copyright (C) 2014 Free Software Foundation, Inc.
+      License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+      This is free software: you are free to change and redistribute it.
+      There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+      and "show warranty" for details.
+      This GDB was configured as "i686-linux-gnu".
+      Type "show configuration" for configuration details.
+      For bug reporting instructions, please see:
+      <http://www.gnu.org/software/gdb/bugs/>.
+      Find the GDB manual and other documentation resources online at:
+      <http://www.gnu.org/software/gdb/documentation/>.
+      For help, type "help".
+      Type "apropos word" to search for commands related to "word"...
+      Reading symbols from ctest...done.
+      (gdb) break main // 设置断点
+      Breakpoint 1 at 0x8048462: file test.c, line 19.
+      (gdb) break add // 设置断点
+      Breakpoint 2 at 0x804843e: file test.c, line 11.
+      (gdb) break info // 设置断点
+      Breakpoint 3 at 0x8048423: file test.c, line 6.
+      (gdb) info breakpoints // 查看所有断点
+      Num     Type           Disp Enb Address    What
+      1       breakpoint     keep y   0x08048462 in main at test.c:19
+      2       breakpoint     keep y   0x0804843e in add at test.c:11
+      3       breakpoint     keep y   0x08048423 in info at test.c:6
+      (gdb) run // 执行当前程序
+      Starting program: /home/vagrant/function-call-stack/ctest
+
+      Breakpoint 1, main (argc=1, argv=0xbffff704) at test.c:19
+      19		int x = 0x100;
+      (gdb) backtrace // 查看函数调用栈
+      #0  main (argc=1, argv=0xbffff704) at test.c:19
+      (gdb) list main
+      13
+      14		return z;
+      15	}
+      16
+      17	int main(int argc, char **argv)
+      18	{
+      19		int x = 0x100;
+      20		int y = 0x200;
+      21		int z = add(x, y);
+      22
+      (gdb) continue // 从当前位置继续执行程序，设置多个断点时使用
+      Continuing.
+
+      Breakpoint 2, add (x=256, y=512) at test.c:11
+      11		int z = x + y;
+      (gdb) backtrace
+      #0  add (x=256, y=512) at test.c:11
+      #1  0x08048486 in main (argc=1, argv=0xbffff704) at test.c:21
+      (gdb) list add // 查看 main 函数源代码，main 为符号名
+      5	{
+      6		printf("info %d\n", x);
+      7	}
+      8
+      9	__attribute__((noinline)) int add(int x, int y)
+      10	{
+      11		int z = x + y;
+      12		info(z);
+      13
+      14		return z;
+      (gdb) info frame // 查看当前栈帧
+      Stack level 0, frame at 0xbffff640:
+      eip = 0x804843e in add (test.c:11); saved eip = 0x8048486
+      called by frame at 0xbffff670
+      source language c.
+      Arglist at 0xbffff638, args: x=256, y=512
+      Locals at 0xbffff638, Previous frame's sp is 0xbffff640
+      Saved registers:
+        ebp at 0xbffff638, eip at 0xbffff63c
+      (gdb) info args // 查看参数
+      x = 256
+      y = 512
+      (gdb) info locals
+      z = 134513341
+      (gdb) frame 1 // 根据编号切换当前栈帧为 main
+      #1  0x08048486 in main (argc=1, argv=0xbffff704) at test.c:21
+      21		int z = add(x, y);
+      (gdb) info frame
+      Stack level 1, frame at 0xbffff670:
+      eip = 0x8048486 in main (test.c:21); saved eip = 0xb7e3caf3
+      caller of frame at 0xbffff640
+      source language c.
+      Arglist at 0xbffff668, args: argc=1, argv=0xbffff704
+      Locals at 0xbffff668, Previous frame's sp is 0xbffff670
+      Saved registers:
+        ebp at 0xbffff668, eip at 0xbffff66c
+      (gdb) down 1 // 当前是 main ，向下 1，就是 add
+      #0  add (x=256, y=512) at test.c:11
+      11		int z = x + y;
+      (gdb) backtrace
+      #0  add (x=256, y=512) at test.c:11
+      #1  0x08048486 in main (argc=1, argv=0xbffff704) at test.c:21
+      (gdb) up 1 // 当前是 add，向上 1 就是 main
+      #1  0x08048486 in main (argc=1, argv=0xbffff704) at test.c:21
+      21		int z = add(x, y);
+      (gdb) backtrace
+      #0  add (x=256, y=512) at test.c:11
+      #1  0x08048486 in main (argc=1, argv=0xbffff704) at test.c:21
+      (gdb) info proc mappings
+      process 2990
+      Mapped address spaces:
+
+          Start Addr   End Addr       Size     Offset objfile
+          0x8048000  0x8049000     0x1000        0x0 /home/vagrant/function-call-stack/ctest
+          0x8049000  0x804a000     0x1000        0x0 /home/vagrant/function-call-stack/ctest
+          0x804a000  0x804b000     0x1000     0x1000 /home/vagrant/function-call-stack/ctest
+          0xb7e22000 0xb7e23000     0x1000        0x0
+          0xb7e23000 0xb7fce000   0x1ab000        0x0 /lib/i386-linux-gnu/libc-2.19.so
+          0xb7fce000 0xb7fd0000     0x2000   0x1aa000 /lib/i386-linux-gnu/libc-2.19.so
+          0xb7fd0000 0xb7fd1000     0x1000   0x1ac000 /lib/i386-linux-gnu/libc-2.19.so
+          0xb7fd1000 0xb7fd4000     0x3000        0x0
+          0xb7fdc000 0xb7fdd000     0x1000        0x0
+          0xb7fdd000 0xb7fde000     0x1000        0x0 [vdso]
+          0xb7fde000 0xb7ffe000    0x20000        0x0 /lib/i386-linux-gnu/ld-2.19.so
+          0xb7ffe000 0xb7fff000     0x1000    0x1f000 /lib/i386-linux-gnu/ld-2.19.so
+          0xb7fff000 0xb8000000     0x1000    0x20000 /lib/i386-linux-gnu/ld-2.19.so
+          0xbffdf000 0xc0000000    0x21000        0x0 [stack]
+    #+END_SRC
+
+**** LLDB 调试
+*** Go 语言示例
+
+    编译程序:
+
+    #+BEGIN_SRC sh
+    go build -gcflags "-N -l" -o gtest1 test.go # -N -l 编译器优化
+    #+END_SRC
+
+    查看 Go 提供的符号:
+
+    #+BEGIN_SRC sh
+      vagrant@trusty32:~/function-call-stack$ nm gtest | grep "main\."
+      080c68f0 T main.add # add()
+      080c6810 T main.info # info()
+      080c69b0 T main.init
+      08187546 B main.initdone.
+      080c6940 T main.main # main()
+      0808e0a0 T runtime.main.func1
+      0808e0e0 T runtime.main.func2
+    #+END_SRC
+
+**** GDB 调试
+
+    #+BEGIN_SRC sh
+      vagrant@trusty32:~/function-call-stack$ gdb gtest
+      GNU gdb (Ubuntu 7.7.1-0ubuntu5~14.04.3) 7.7.1
+      Copyright (C) 2014 Free Software Foundation, Inc.
+      License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+      This is free software: you are free to change and redistribute it.
+      There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+      and "show warranty" for details.
+      This GDB was configured as "i686-linux-gnu".
+      Type "show configuration" for configuration details.
+      For bug reporting instructions, please see:
+      <http://www.gnu.org/software/gdb/bugs/>.
+      Find the GDB manual and other documentation resources online at:
+      <http://www.gnu.org/software/gdb/documentation/>.
+      For help, type "help".
+      Type "apropos word" to search for commands related to "word"...
+      Reading symbols from gtest...done.
+      warning: File "/usr/local/go/src/runtime/runtime-gdb.py" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+      To enable execution of this file add
+          add-auto-load-safe-path /usr/local/go/src/runtime/runtime-gdb.py
+      line to your configuration file "/home/vagrant/.gdbinit".
+      To completely disable this security protection add
+          set auto-load safe-path /
+      line to your configuration file "/home/vagrant/.gdbinit".
+      For more information about this security protection see the
+      "Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+          info "(gdb)Auto-loading safe path"
+      (gdb) b main.main // 根据符号设置断点
+      Breakpoint 1 at 0x80c6940: file /home/vagrant/function-call-stack/test.go, line 16.
+      (gdb) b main.add // 根据符号设置断点
+      Breakpoint 2 at 0x80c68f0: file /home/vagrant/function-call-stack/test.go, line 9.
+      (gdb) b main.info // 根据符号设置断点
+      Breakpoint 3 at 0x80c6810: file /home/vagrant/function-call-stack/test.go, line 5.
+      (gdb) info b // 查看所有断点
+      Num     Type           Disp Enb Address    What
+      1       breakpoint     keep y   0x080c6940 in main.main at /home/vagrant/function-call-stack/test.go:16
+      2       breakpoint     keep y   0x080c68f0 in main.add at /home/vagrant/function-call-stack/test.go:9
+      3       breakpoint     keep y   0x080c6810 in main.info at /home/vagrant/function-call-stack/test.go:5
+      (gdb) l // 执行程序
+      7	}
+      8
+      9	func add(x, y int) int {
+      10		z := x + y
+      11		info(z)
+      12
+      13		return z
+      14	}
+      15
+      16	func main() {
+      (gdb) l
+      17		x, y := 0x100, 0x200
+      18		z := add(x, y)
+      19
+      20		println(z)
+      21	}
+      (gdb) r // 执行程序
+      Starting program: /home/vagrant/function-call-stack/gtest
+
+      Breakpoint 1, main.main () at /home/vagrant/function-call-stack/test.go:16
+      16	func main() {
+      (gdb) bt // 查看调用堆栈
+      #0  main.main () at /home/vagrant/function-call-stack/test.go:16
+      (gdb) c
+      Continuing.
+
+      Breakpoint 2, main.add (x=256, y=512, ~r2=0) at /home/vagrant/function-call-stack/test.go:9
+      9	func add(x, y int) int {
+      (gdb) bt
+      #0  main.add (x=256, y=512, ~r2=0) at /home/vagrant/function-call-stack/test.go:9
+      #1  0x080c6979 in main.main () at /home/vagrant/function-call-stack/test.go:18
+      (gdb) c
+      Continuing.
+
+      Breakpoint 3, main.info (x=768) at /home/vagrant/function-call-stack/test.go:5
+      5	func info(x int) {
+      (gdb) bt
+      #0  main.info (x=768) at /home/vagrant/function-call-stack/test.go:5
+      #1  0x080c6921 in main.add (x=256, y=512, ~r2=0) at /home/vagrant/function-call-stack/test.go:11
+      #2  0x080c6979 in main.main () at /home/vagrant/function-call-stack/test.go:18
+      (gdb) info proc mappings
+      process 3189
+      Mapped address spaces:
+
+          Start Addr   End Addr       Size     Offset objfile
+          0x8048000  0x80c7000    0x7f000        0x0 /home/vagrant/function-call-stack/gtest
+          0x80c7000  0x8166000    0x9f000    0x7f000 /home/vagrant/function-call-stack/gtest
+          0x8166000  0x8176000    0x10000   0x11e000 /home/vagrant/function-call-stack/gtest
+          0x8176000  0x818a000    0x14000        0x0 [heap]
+          0x8400000  0x8800000   0x400000        0x0 [stack:3189]
+          0x8800000 0x28800000 0x20000000        0x0
+          0xa7d5f000 0xa7e00000    0xa1000        0x0
+          0xa7e00000 0xb7fbf000 0x101bf000        0x0
+          0xb7fbf000 0xb7fff000    0x40000        0x0
+          0xb7fff000 0xb8000000     0x1000        0x0 [vdso]
+          0xbffdf000 0xc0000000    0x21000        0x0
+      (gdb) quit
+    #+END_SRC
+    
+**** LLDB 调试
+
+    #+BEGIN_SRC sh
+     
+    #+END_SRC
+*** 参考书籍
+
+    - 《Go 学习笔记》雨痕
+    - 《C 学习笔记》雨痕
+    - 《程序员的自我修养-链接，装载，库》
+
+** TODO GDB 和 LLDB 跟踪 C 语言函数执行过程
+
+   https://favoorr.github.io/2017/02/26/gdb-trace-c-function-call/
+
+*** 总结
+
+    - C 语言中函数调用时会分配对应的栈帧，rsp 始终指向栈帧顶部，rbp 指向栈帧底部
+    - C 语言中使用 (rbp - 偏移量) 来进行栈帧寻址操作，完成函数调用
+    - C 语言中函数调用时，会使用寄存器来进行值复制传递
+    - C 语言中现场保护时会保存 rbp 和 rip，下一级函数调用结束后，恢复值，继续执行
+
+** TODO GDB 和 LLDB 跟踪 Go 语言方法执行过程 
+*** 总结
+    - Go 语言中函数调用时会分配对应的栈帧，rsp 始终指向栈帧顶部，rbp 被当做普通寄存器使用
+    - Go 语言中使用 (rsp + 偏移量) 来进行栈帧寻址操作，完成函数调用
+    - Go 语言中函数调用时，会在栈上开辟空间，完成值复制传递
+    - Go 语言中现场保护时会保存 rip，下一级函数调用结束后，恢复值，继续执行
+    - Go 语言中指针宽度是 8 个字节
+
+      可以观察到 Go 语言根据自己语言特性和定位，实现方式并不跟 C 语言完全相同， 例如多返回值，使用栈上存储就非常方便
+
+      https://favoorr.github.io/2017/02/26/gdb-trace-go-function-call/
+* Vagrant
+** TODO Vagrant 的配置和使用
+** TODO Vagrant 的配置集群
+   https://favoorr.github.io/2017/01/06/vagrant-multiple-servers-cluster-config-best-practices/
+* Language
+** C and Cplusplus
+** Golang
+*** TODO Golang 学习之 Channel 深入
+*** TODO Golang 调用 C/C++
+    https://app.yinxiang.com/shard/s18/nl/19217884/f289fb4d-8656-4c6b-9dbc-e211b804d70d/
+** Java
+*** TODO Java 入门
+
+**** 0x00 环境变量配置
+
+     使用的命令
+
+     #+BEGIN_SRC sh
+      javac
+      java
+     #+END_SRC
+
+     第一个程序
+
+     #+BEGIN_SRC java
+      // filename: HelloWorld.java
+      public class HelloWorld {
+          public static void main(String[] args) {
+              System.out.println("Hello World!");
+          }
+      }
+     #+END_SRC
+
+     #+BEGIN_SRC sh
+      # 编译
+      javac javac HelloWorld.java
+
+      # 运行
+      java HelloWorld
+     #+END_SRC
+
+**** Java 资料
+
+     - http://ifeve.com/
+     - https://javacodegeeks.com
+
+** Python
+* Network
+** DNS
+** TCP
+** UDP
+** Shadowsock
+   - Sock5
+   - PAC
+* Other
+** TODO 关于工具                                                      :@想法:
+
+   人们都是对于自己付出了努力的东西特人珍视，哪怕这个东西不是最好的，他们也不会轻易放弃。
+   我最近就有这个想法，自己一直以来一直想要学习 Emacs， 因此付出了很多的努力，所以哪怕当 Emacs 出现卡死或者其他很难就觉得问题，我还是会继续忍受下去，因为我付出了努力。
+** TODO 关于 ARTS
+
+   ARTS 是指：
+
+   - Algorithm 一道算法题
+   - Review 读一篇英文文章
+   - Technique/Tips 分享一个小技术
+   - Share 分享一个观点
+
+** TODO 使用 hugo 和 ox-hugo 搭建自己的 BLOG             :emacs:orgmode:hugo:
+  :PROPERTIES:
+  :EXPORT_FILE_NAME: use-orgmode-and-hugo-write-blog
+  :EXPORT_DATE: <2018-10-16 Tue>
+  :END:
+
+   - 为什么要写这个文章？
+   - 为什么使用 hugo 而不是 hexo 或者其他的？
+     > hexo node 写的，环境配置等麻烦
+   - 为什么使用 org-mode , 而不是 markdown, 明明 Markdown 更有名
+
+*** 缘起
+
+    =org-mode= 是一个很强的纯文本语法格式，自己非常喜欢 =org-mode= ，因此自己使用 =org-mode= 来记录自己的笔记。当自己要开始写 BLOG 的时候，就决定决定使用 =org-mode= 来作为自己 BLOG 管理工具，之前是使用 emacs 的插件 [[https://github.com/CodeFalling/blog-admin][blog-admin]] 和 [[https://hexo.io/][hexo]] 生成自己的 BLOG，但是自己不是很喜欢这种组合 [[https://github.com/CodeFalling/blog-admin][blog-admin]] 。有两个原因：一个是 [[https://github.com/CodeFalling/blog-admin][blog-admin]] 已经不怎么更新了，还有一个就是自己不怎么喜欢 [[https://hexo.io/][hexo]] (我自己不怎么喜欢node)。
+
+    <!--more-->
+
+    因此我就选择了以下的组合:
+
+    - [[https://gohugo.io/][hugo]] : 使用 Golang 开发的静态 BLOG 工具
+    - [[https://ox-hugo.scripter.co/][ox-hugo]] : 用于把 =*.org= 转为 hugo 可以识别的 =*.md=
+    - [[https://github.com/masasam/emacs-easy-hugo][easy-hugo]]
+    - 当然还少不了 [[https://orgmode.org/][orgmode]]
+
+    使用上面说的工具的组合，那么写一篇 BLOG 的变为如下：
+
+    1. 使用 org-mode heading 创建文章
+    2. 写文章
+    3. 使用 ox-hugo 生成 markdown 文档
+    4. 使用 easy-hugo 预览(可选)
+    5. 发布 BLOG
+
+
+    这里使用到了两个工具：ox-hugo 和 easy-hugo, 接下就介绍这两个工具。
+
+    #+BEGIN_QUOTE
+    其实 hugo 原生支持渲染 orgmode 文件，但是它所使用的 markdown 渲染引擎比 orgmode 的渲染引擎要强大的多，这是使用 ox-hugo 的原因之一。
+    #+END_QUOTE
+
+*** ox-hugo: org 为 markdown
+
+    [[https://ox-hugo.scripter.co/][ox-hugo]] 可以将 org 文件转成 hugo 兼容的 markdown 文件, 也可生成前端格式文件（如 toml 和 yaml）。
+
+    可以将你的 orgmode 博文，生成指定的 markdown 文件，这只需要一条指令就够了（官方默认 =C-c C-e H h=），并且，它还会自动更正你的文章修改时间 ，markdown 文件中的 lastmod 值。但让也可以自动生成相应的 markdonw 文件，不用每次都执行 =C-c C-e H h=
+
+    至此，你就已经可以按照常规的方法来预览、发布你的博文了。不过还有一个扩展没有介绍—— easy-hugo 。
+
+    #+BEGIN_QUOTE
+    导出的 markdown 文件会编译不过，原因是因为生成的 =author= 标签， =hugo= 报错。因此可以把这个 =author= 禁止掉就可以了 ( =#+options: author:nil= )。
+    #+END_QUOTE
+
+**** 入门
+***** ScreenShot
+
+      ox-hugo 提供了两种工作流来写 BLOG
+
+      方法1:
+      [[file:use-orgmode-and-hugo-write-blog/one-post-per-subtree.png]]
+
+      方法2:
+      [[file:use-orgmode-and-hugo-write-blog/one-post-per-file.png]]
+
+***** 安装
+
+      需要 emacs 24.4+ 和 Org 9.0+
+
+***** 配置
+
+      =spacemacs= 中 =ox-hugo= 的配置, 在 =dotspacemacs/user-config= 中添加配置：
+
+      #+BEGIN_SRC emacs-lisp
+      (defun dotspacemacs/user-config ()
+        ;; Other stuff
+        ;; ..
+
+        ;; ox-hugo config
+        (use-package ox-hugo
+          :ensure t            ;Auto-install the package from Melpa (optional)
+          :after ox)
+        (use-package ox-hugo-auto-export) ;If you want the auto-exporting on file saves
+        (use-package ox-hugo
+          :ensure t            ;Auto-install the package from Melpa (optional)
+          :after ox)
+        (use-package ox-hugo-auto-export) ;If you want the auto-exporting on file saves
+        )
+      #+END_SRC
+
+      其他的配置参考 [[https://ox-hugo.scripter.co/][ox-hugo]] 官方文档。
+
+**** Org To Hugo
+***** 基于单个文件的导出
+
+      #+caption: Hugo front-matter translation for subtree-based exports
+      | Hugo front-matter (TOML)	     | Org                                  |
+      |----------------------------------+--------------------------------------|
+      | title = "foo"	                | =#+title: foo=                       |
+      | date = 2017-07-24                | =#+date: 2017-07-24=                 |
+      | publishDate = 2018-01-26	     | =#+hugo_publishdate: 2018-01-26=     |
+      | expiryDate = 2999-01-01	      | =#+hugo_expirydate: 2999-01-01=      |
+      | lastmod = <current date>	     | =#+hugo_auto_set_lastmod: t=         |
+      | tags = ["toto", "zulu"]	      | =#+hugo_tags: toto zulu=             |
+      | categories = ["x", "y"]	      | =#+hugo_categories: x y=             |
+      | draft = true	                 | =#+hugo_draft: true=                 |
+      | draft = false	                | =#+hugo_draft: false=                |
+      | weight = 123	                 | =#+hugo_weight: 123=                 |
+      | tags_weight = 123	            | =#+hugo_weight: :tags 123=           |
+      | categories_weight = 123          | =#+hugo_weight: :categories 123=     |
+      | weight = 123 (in [menu.foo])	 | =#+hugo_menu: :menu foo :weight 123= |
+
+***** 格式化
+
+      下表是 orgmode 标记语言转换 markdown 标记语言的格式:
+
+      #+caption: Org markup to Markdown markup
+      | Org	             | Markdown                                                       |
+      |---------------------+----------------------------------------------------------------|
+      | =*bold*=	        |  =**bold**=                                                    |
+      | =/italics/=	     | =_italics_=                                                    |
+      | =\=monospace\==     | 	=`monospace`=                                              |
+      | =~key-binding~=	 | =`key-binding`=                                                |
+      |                     | - if org-hugo-use-code-for-kbd is nil [default]                |
+      | =~key-binding~=	 | =<kbd>key-binding</kbd>=                                       |
+      |                     | - if org-hugo-use-code-for-kbd is non-nil                      |
+      |                     | - Requires CSS to render the <kbd> tag as something special.   |
+      | =+strike-through+=  | 	~~strike-through~~                                         |
+      | =_underline_=	   | =<span class = "underline">underline</span>=                   |
+      |                     | - Requires CSS to render this underline class as an underline. |
+
+**** 进阶
+***** 自动生成 markdown 文件配置
+
+      在 =hugo= 的 =base= 目录下新建一个目录 =content-org=，并且新建文件 =.dir-locals.el=, 内容如下：
+
+      #+BEGIN_SRC emacs-lisp
+      (("content-org/"
+        . ((org-mode . ((org-hugo-auto-export-on-save . t))))))
+      #+END_SRC
+
+      新建目录和文件后的目录结构如下：
+
+      #+BEGIN_EXAMPLE
+      <HUGO_BASE_DIR>
+        ├── config.toml
+        ├── content
+        ├── content-org      <-- Org 文件写到这个目录
+        ├── static
+        ├── themes
+        └── .dir-locals.el
+      #+END_EXAMPLE
+
+      还没有完，需要在每个 =org= 文件后添加如下内容，这样会很麻烦，但是我们可以使用 =yassnnpets= 来完成：
+
+***** Org 文件中包含图片
+
+      把图片放到 org 文件目录下，使用如下语法就可以引用图片:
+
+      #+BEGIN_EXAMPLE
+      [[file:image_path]]
+      #+END_EXAMPLE
+
+*** 附录
+**** 我的Snipptes
+
+     #+BEGIN_EXAMPLE
+     # -*- mode: snippet -*-
+     # name: hugo
+     # key: hugo
+     # --
+     #+HUGO_BASE_DIR: ~/blog
+     #+HUGO_SECTION: ./post
+     #+TITLE: $1
+     #+DATE: `(format-time-string "%Y-%m-%d")`
+     #+options: author:nil
+     #+HUGO_AUTO_SET_LASTMOD: t
+     #+HUGO_TAGS: $2
+     #+HUGO_CATEGORIES: $3
+     #+HUGO_DRAFT: false
+
+     $0
+
+     * Footnotes
+     * COMMENT Local Variables                          :ARCHIVE:
+     # Local Variables:
+     # org-hugo-auto-export-on-save: t
+     # End:
+     #+END_EXAMPLE
+
+*** 参考
+
+    - [[https://ox-hugo.scripter.co/]]
+    - [[https://github.com/masasam/emacs-easy-hugo]]
+    - [[http://www.xianmin.org/post/ox-hugo/]]
+    - [[https://blog.coderzh.com/2015/08/29/hugo/]]
+      
+** 从源码到可执行文件-编译-链接-执行
+
+  https://favoorr.github.io/2017/03/01/compile-link-1/
+
+* Footnotes
+* COMMENT Local Variables                          :ARCHIVE:
+# Local Variables:
+# org-hugo-auto-export-on-save: nil
+# End:
+
