@@ -6,17 +6,879 @@
 #+options: author:nil
 
 * Linux
-** TODO Linux 搭建 APUE 的环境
-** TODO Linux 搭建 UNP 的环境
+** DRAFT Linux 搭建 APUE 的环境
 
-** TODO Linux 生成动态库和静态库
+   我的环境为 Ubuntu 16.04, 具体环境如下：
 
-   https://app.yinxiang.com/shard/s18/nl/19217884/e5059d86-4c44-4c04-af89-cd764261341b/
+   #+BEGIN_SRC sh
+    $ lsb_release -a
+    No LSB modules are available.
+    Distributor ID: Ubuntu
+    Description: Ubuntu 16.04.4 LTS
+    Release: 16.04
+    Codename: xenial
+   #+END_SRC
+
+*** 1. 下载官网提供的源码
+    #+BEGIN_SRC sh
+      # 这里下载 v3 的代码
+      wget http://www.apuebook.com/src.3e.tar.gz
+    #+END_SRC
+
+*** 2. 解压源码
+
+    #+BEGIN_SRC sh
+      tar -zxvf src.3e.tar.gz
+    #+END_SRC
+
+*** 3. 编译
+
+    #+BEGIN_SRC sh
+      cd apue.3e
+      make
+    #+END_SRC
+
+*** 4. 编译出错
+
+    #+BEGIN_SRC sh
+      make
+      for i in lib intro sockets advio daemons datafiles db environ fileio filedir ipc1 ipc2 proc pty relation signals standards stdio termios threadctl threads printer exercises; do \
+        (cd $i && echo "making $i" && make ) || exit 1; \
+      done
+      making lib
+      make[1]: Entering directory '/home/tomshine/apue.3e/lib'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/lib'
+      making intro
+      make[1]: Entering directory '/home/tomshine/apue.3e/intro'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/intro'
+      making sockets
+      make[1]: Entering directory '/home/tomshine/apue.3e/sockets'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/sockets'
+      making advio
+      make[1]: Entering directory '/home/tomshine/apue.3e/advio'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/advio'
+      making daemons
+      make[1]: Entering directory '/home/tomshine/apue.3e/daemons'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/daemons'
+      making datafiles
+      make[1]: Entering directory '/home/tomshine/apue.3e/datafiles'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/datafiles'
+      making db
+      make[1]: Entering directory '/home/tomshine/apue.3e/db'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/db'
+      making environ
+      make[1]: Entering directory '/home/tomshine/apue.3e/environ'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/environ'
+      making fileio
+      make[1]: Entering directory '/home/tomshine/apue.3e/fileio'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/fileio'
+      making filedir
+      make[1]: Entering directory '/home/tomshine/apue.3e/filedir'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/filedir'
+      making ipc1
+      make[1]: Entering directory '/home/tomshine/apue.3e/ipc1'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/ipc1'
+      making ipc2
+      make[1]: Entering directory '/home/tomshine/apue.3e/ipc2'
+      for i in open opend open.fe opend.fe; do \
+        (cd $i && make ) || exit 1; \
+      done
+      make[2]: Entering directory '/home/tomshine/apue.3e/ipc2/open'
+      make[2]: Nothing to be done for 'all'.
+      make[2]: Leaving directory '/home/tomshine/apue.3e/ipc2/open'
+      make[2]: Entering directory '/home/tomshine/apue.3e/ipc2/opend'
+      make[2]: Nothing to be done for 'all'.
+      make[2]: Leaving directory '/home/tomshine/apue.3e/ipc2/opend'
+      make[2]: Entering directory '/home/tomshine/apue.3e/ipc2/open.fe'
+      make[2]: Nothing to be done for 'all'.
+      make[2]: Leaving directory '/home/tomshine/apue.3e/ipc2/open.fe'
+      make[2]: Entering directory '/home/tomshine/apue.3e/ipc2/opend.fe'
+      make[2]: Nothing to be done for 'all'.
+      make[2]: Leaving directory '/home/tomshine/apue.3e/ipc2/opend.fe'
+      make[1]: Leaving directory '/home/tomshine/apue.3e/ipc2'
+      making proc
+      make[1]: Entering directory '/home/tomshine/apue.3e/proc'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/proc'
+      making pty
+      make[1]: Entering directory '/home/tomshine/apue.3e/pty'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/pty'
+      making relation
+      make[1]: Entering directory '/home/tomshine/apue.3e/relation'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/relation'
+      making signals
+      make[1]: Entering directory '/home/tomshine/apue.3e/signals'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/signals'
+      making standards
+      make[1]: Entering directory '/home/tomshine/apue.3e/standards'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/standards'
+      making stdio
+      make[1]: Entering directory '/home/tomshine/apue.3e/stdio'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/stdio'
+      making termios
+      make[1]: Entering directory '/home/tomshine/apue.3e/termios'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/termios'
+      making threadctl
+      make[1]: Entering directory '/home/tomshine/apue.3e/threadctl'
+      make[1]: Nothing to be done for 'all'.
+      make[1]: Leaving directory '/home/tomshine/apue.3e/threadctl'
+      making threads
+      make[1]: Entering directory '/home/tomshine/apue.3e/threads'
+      gcc -ansi -I../include -Wall -DLINUX -D_GNU_SOURCE badexit2.c -o badexit2 -L../lib -lapue -pthread -lrt -lbsd
+      /usr/bin/ld: cannot find -lbsd
+      collect2: error: ld returned 1 exit status
+      Makefile:31: recipe for target 'badexit2' failed
+      make[1]: *** [badexit2] Error 1
+      make[1]: Leaving directory '/home/tomshine/apue.3e/threads'
+      Makefile:6: recipe for target 'all' failed
+      make: *** [all] Error 1
+    #+END_SRC
+*** 5. 解决编译错误
+
+    原因是缺少 bsd 库，安装如下：
+
+    #+BEGIN_SRC sh
+      sudo apt-get install libbsd-dev
+    #+END_SRC
+
+    安装完成后，继续 make 。
+
+*** 6. 复制 apue.h 到 /usr/include 目录下：
+
+    #+BEGIN_SRC sh
+      sudo cp ./include/apue.h /usr/include/
+    #+END_SRC
+*** 7. 复制编译生成的 .a 到系统的 /usr/local/lib 目录下：
+
+    #+BEGIN_SRC sh
+      sudo cp ./lib/libapue.a /usr/local/lib/
+    #+END_SRC
+*** 8. 验证
+
+    #+BEGIN_SRC sh
+      $ cd ./apue.3e/intro
+      $ gcc hello.c -o hello
+      $ ./hello
+      hello world from process ID 32488
+    #+END_SRC
+
+    成功编译并运行，说明安装成功。
+
+*** 9. 参考资料
+
+    - [[http://www.apuebook.com/apue3e.htmlAdvanced][Programming in the UNIX® Environment 的官方网站]]
+     
+** DRAFT Linux 搭建 UNP 的环境
+
+   我的环境为 Ubuntu 16.04, 具体环境如下：
+
+   #+BEGIN_SRC sh
+    $ lsb_release -a  
+    No LSB modules are available.
+    Distributor ID:   Ubuntu
+    Description:  Ubuntu 16.04.4 LTS
+    Release:  16.04
+    Codename: xenial
+   #+END_SRC
+
+*** 1. 下载
+
+    #+BEGIN_SRC sh
+  # 下载官网提供的源码（这里下载 UNPv3 的代码）
+  wget http://www.unpbook.com/unpv13e.tar.gz
+    #+END_SRC
+
+*** 2. 解压
+    #+BEGIN_SRC sh
+    # 解压源码
+    tar -zxvf unpv13e.tar.gz
+    #+END_SRC
+*** 3. 生成 makefile
+
+    #+BEGIN_SRC sh
+      cd unpv13e
+      ./configure
+      checking build system type... x86_64-unknown-linux-gnu
+      checking host system type... x86_64-unknown-linux-gnu
+      checking for gcc... gcc
+      checking for C compiler default output... a.out
+      checking whether the C compiler works... yes
+      checking whether we are cross compiling... no
+      checking for suffix of executables... 
+      checking for suffix of object files... o
+      checking whether we are using the GNU C compiler... yes
+      checking whether gcc accepts -g... yes
+      checking for gcc option to accept ANSI C... none needed
+      checking for ranlib... ranlib
+      checking for pthread_create in -lpthread... yes
+      checking for t_open in -lnsl... no
+      checking for library containing socket... none required
+      checking for /usr/local/bind/lib/libbind.a... no
+      checking for /home/tomshine/libbind.a... no
+      checking for /home/tomshine/libresolv.a... no
+      checking for res_init in -lresolv... no
+      checking for t_open in -lxti... no
+      checking for /home/tomshine/libunp.a... no
+      checking for /home/tomshine/libunpxti.a... no
+      checking how to run the C preprocessor... gcc -E
+      checking for egrep... grep -E
+      checking for ANSI C header files... yes
+      checking for sys/types.h... yes
+      checking for sys/socket.h... yes
+      checking for sys/time.h... yes
+      checking for time.h... yes
+      checking for netinet/in.h... yes
+      checking for arpa/inet.h... yes
+      checking for errno.h... yes
+      checking for fcntl.h... yes
+      checking for netdb.h... yes
+      checking for signal.h... yes
+      checking for stdio.h... yes
+      checking for stdlib.h... yes
+      checking for string.h... yes
+      checking for sys/stat.h... yes
+      checking for sys/uio.h... yes
+      checking for unistd.h... yes
+      checking for sys/wait.h... yes
+      checking for sys/un.h... yes
+      checking for sys/param.h... yes
+      checking for sys/select.h... yes
+      checking for sys/sysctl.h... yes
+      checking for poll.h... yes
+      checking for sys/event.h... no
+      checking for strings.h... yes
+      checking for sys/ioctl.h... yes
+      checking for sys/filio.h... no
+      checking for sys/sockio.h... no
+      checking for pthread.h... yes
+      checking for net/if_dl.h... no
+      checking for xti.h... no
+      checking for xti_inet.h... no
+      checking for netconfig.h... no
+      checking for netdir.h... no
+      checking for stropts.h... yes
+      checking whether time.h and sys/time.h may both be included... yes
+      checking if uint8_t defined... yes
+      checking if int16_t defined... yes
+      checking if uint16_t defined... yes
+      checking if int32_t defined... yes
+      checking if uint32_t defined... yes
+      checking if size_t defined... yes
+      checking if ssize_t defined... yes
+      checking if socklen_t defined... yes
+      checking if sa_family_t defined... yes
+      checking if t_scalar_t defined... yes
+      checking if t_uscalar_t defined... yes
+      checking for struct sockaddr.sa_len... no
+      checking for struct sockaddr_storage... yes
+      checking for struct sockaddr_storage.ss_family... yes
+      checking for struct msghdr.msg_control... yes
+      checking for struct ifreq.ifr_mtu... yes
+      checking for getaddrinfo function prototype in netdb.h... yes
+      checking for getnameinfo function prototype in netdb.h... yes
+      checking for gethostname function prototype in unistd.h... yes
+      checking for getrusage function prototype in sys/resource.h... yes
+      checking for hstrerror function prototype in netdb.h... yes
+      checking for if_nametoindex function prototype in net/if.h... yes
+      checking for inet_aton function prototype in arpa/inet.h... yes
+      checking for inet_pton function prototype in arpa/inet.h... yes
+      checking for pselect function prototype in sys/select.h... yes
+      checking for snprintf function prototype in stdio.h... yes
+      checking for sockatmark function prototype in sys/socket.h... yes
+      checking for struct addrinfo... yes
+      checking for struct if_nameindex... yes
+      checking for struct sockaddr_dl... no
+      checking for struct timespec... yes
+      checking for /dev/tcp... no
+      checking for /dev/xti/tcp... no
+      checking for /dev/streams/xtiso/tcp... no
+      checking for bzero... yes
+      checking for getaddrinfo... yes
+      checking for gethostname... yes
+      checking for gethostbyname2... yes
+      checking for gethostbyname_r... yes
+      checking for getnameinfo... yes
+      checking for hstrerror... yes
+      checking for if_nametoindex... yes
+      checking for inet_aton... yes
+      checking for inet_pton... yes
+      checking for inet6_rth_init... yes
+      checking for kqueue... no
+      checking for kevent... no
+      checking for mkstemp... yes
+      checking for poll... yes
+      checking for pselect... yes
+      checking for snprintf... yes
+      checking for sockatmark... yes
+      checking for vsnprintf... yes
+      checking for IPv4 support... yes
+      checking for IPv6 support... yes
+      checking for Unix domain sockets... yes
+      checking for multicast support... yes
+      checking for -I/home/tomshine/doc/unp2ev1/src/include... no
+      configure: creating ./config.status
+      config.status: creating Makefile
+      config.status: creating Make.defines
+      config.status: creating config.h
+    #+END_SRC
+
+*** 4. 编译
+
+    #+BEGIN_SRC sh
+      cd ./lib
+      make
+    #+END_SRC
+
+    生成的 libunp.a 在上一级目录 npv13e 下。
+
+*** 5. 复制 unp.h 和 config.h 到 /usr/include 目录下：
+
+    #+BEGIN_SRC sh
+      sudo cp lib/unp.h /usr/include  
+      sudo cp config.h /usr/include 
+    #+END_SRC
+*** 6. 复制编译生成的 .a 到系统的 /usr/local/lib 目录下：
+
+    #+BEGIN_SRC sh
+      sudo cp ./lib/libunp.a /usr/local/lib/ 
+    #+END_SRC
+
+*** 7. 验证
+
+    #+BEGIN_SRC sh
+      $ cd ./unpv13e/intro
+      $ gcc byteorder.c -o byteorder
+      $ ./hello
+      $ ./byteorder 
+      x86_64-unknown-linux-gnu: little-endian
+    #+END_SRC
+
+    成功编译并运行，说明安装成功。
+
+*** 8. 参考资料
+
+    - [[http://www.unpbook.com/UNIX][Network Programming 的官方网站]]
+     
+** DRAFT Linux 生成动态库和静态库
+
+*** 1、静态库
+
+    Linux 上的静态库为 *.a 文件，本质上一个归档文件, 生成一个静态库的步骤如下：
+
+    1. 通过源文件生成目标文件(*.o)
+    2. 使用命令 ar 归档目标文件，生成静态库
+    3. 配置静态库，写一个静态库中函数的头文件
+
+    使用静态库的时候把头文件包含进入，并且需要链接库。
+
+**** 1.1、写源文件，并生成目标文件
+
+     mymath.c 源码如下：
+
+     #+BEGIN_SRC c
+      int my_add(int a, int b) {
+          return a + b;
+      }
+
+      int my_sub(int a, int b) {
+          return a - b;
+      }
+
+      myprint.c 源码如下：
+
+      #include <stdio.h>
+
+      void my_count(const char * message) {
+          fprintf(stdout, "%s\n", message);
+      }
+     #+END_SRC
+
+     为这两个源文件生成目标:
+
+     #+BEGIN_SRC sh
+      # 生成目标文件
+      $ gcc -c mymath.c
+      $ gcc -c myprint.c
+     #+END_SRC
+
+**** 1.2、归档目标文件，得到静态库
+
+     #+BEGIN_SRC sh
+      $ ar crv mylib.a mymath.o myprint.o
+      a - mymath.o
+      a - myprint.o
+     #+END_SRC
+
+     这样就得到了静态库 mylib.a。
+
+     =ar= 命令的参数介绍：
+
+     1. =c= 如果需要生成新的库文件，不要警告
+     2. =r= 替代库中现有的文件或者插入新文件
+     3. =v= 输出详细信息
+
+     注意：使用 ar 生成的静态必须是 libxxx.a 格式命名，因为这是 Linux 规定。我们链接库的时候就可以使用 -lxxx。当我们使用 -lxxx 的时候，编译器就会在指定的目录搜索 libxxx.a 或 libxxx.so。
+
+     使用 =ar t= 查询静态库包含的目标：
+
+     #+BEGIN_SRC sh
+      $ ar t libmylib.a
+      myprint.o
+      mymath.o
+     #+END_SRC
+
+**** 1.3、生成对应的头文件
+
+     mylib.h 源码如下：
+
+     #+BEGIN_SRC c
+      #ifndef __MY_LIB_H__
+      #define __MY_LIB_H__
+
+      int my_add(int a, int b);
+      int my_sub(int a, int b);
+
+      void my_cout(const char *);
+
+      #endif
+     #+END_SRC
+
+**** 1.4、测试静态库
+
+     在当前目录下新建 test.c 文件，内容如下：
+
+     #+BEGIN_SRC c
+      #include "mylib.h"
+
+      int main() {
+          int a = my_add(1, 2);
+          printf("my_add(1,2)=%d\n", a);
+
+          int b = my_sub(2, 2);
+          printf("my_sub(2,2)=%d\n", b);
+
+          my_count("1231321");
+
+          return 0;
+      }
+     #+END_SRC
+
+     编译 test.c
+
+     #+BEGIN_SRC sh
+      $ gcc main.c -L./lib -lmylib
+     #+END_SRC
+
+     - =-L= 参数告诉链接器哭的目录
+     - =-l= 参数告诉链接器链接 libmylib.a 的库
+
+     运行 a.out
+
+     #+BEGIN_SRC sh
+      $ ./a.out
+      my_add(1,2)=3
+      my_sub(2,2)=0
+      1231321
+     #+END_SRC
+
+**** 1.5、使用 Makefile 简化过程
+
+     #+BEGIN_SRC makefile
+      .PHONY: build test
+
+      build: libmylib.a
+
+      libmylib.a: mymath.o myprint.o
+          ar crv $@ mymath.o myprint.o
+
+      my_math.o: mymath.c
+          gcc -c mymath.c
+
+      my_print.o: myprint.c
+          gcc -c myprint.c
+
+      test: a.out
+
+      a.out: test.c
+          gcc test.c -L. -lmylib
+
+      clean:
+          rm *.o *.a
+     #+END_SRC
+
+     这个就不解释了。
+
+*** 2、动态库
+
+    Linux 下动态的格式为 libxxx.so，其中 so 是 Shared Obeject 的缩写，即目标是共享文件, 生成一个动态库步骤如下：
+
+    1. 通过源文件生成目标文件(*.o)
+    2. 使用命令 gcc 把目标文件生成共享库
+    3. 通过 -L<path> -lxxx 的 gcc 的 flag 指定链接生成共享库。
+    4. 把生成的库放到链接库的标准路径后或者设置 LD_LIBRARY_PATH，才能正确的链接动态。
+
+    源文件和静态库的一样，只是生成库的方法变了：
+
+    #+BEGIN_SRC sh
+    $ gcc -c -fPIC mymath.c
+    $ gcc -c -fPIC myprint.c
+    $ gcc -shared -o libmylib.so mymath.o myprint.o
+    #+END_SRC
+
+    实际上上述过程分为编译和链接两步
+
+    - =-fPI= C是编译选项，PIC是 Position Independent Code 的缩写，表示要生成位置无关的代码，这是动态库需要的特性；
+    - =-shared= 是链接选项，告诉gcc生成动态库而不是可执行文件。
+
+    编译 test.c 并运行 a.out:
+
+    #+BEGIN_SRC sh
+      $ gcc main.c -L./ -lmylib                   
+      main.c: In function ‘main’:
+      main.c:5:5: warning: incompatible implicit declaration of built-in function ‘printf’ [enabled by default]
+          printf("my_add(1,2)=%d\n", a);
+          ^
+      $ ./a.out
+      ./a.out: error while loading shared libraries: libmylib.so: cannot open shared object file: No such file or directory
+    #+END_SRC
+
+    可以看到报错了，找不到 libmylib.so，原来Linux是通过 /etc/ld.so.cache 文件搜寻要链接的动态库的。而 /etc/ld.so.cache 是 ldconfig 程序读取 /etc/ld.so.conf 文件生成的。（注意， /etc/ld.so.conf 中并不必包含 /lib 和 /usr/lib，ldconfig程序会自动搜索这两个目录）如果我们把 libmylib.so 所在的路径添加到 /etc/ld.so.conf 中，再以root权限运行 ldconfig 程序，更新 /etc/ld.so.cache ，a.out运行时，就可以找到 libmylib.so。
+
+    但作为一个简单的测试例子，让我们改动系统的东西，似乎不太合适。还有另一种简单的方法，就是为a.out指定 LD_LIBRARY_PATH。LD_LIBRARY_PATH=. ./a.out 程序就能正常运行了。LD_LIBRARY_PATH=. 是告诉 a.out，先在当前路径寻找链接的动态库。
+
+    对于elf格式的可执行程序，是由ld-linux.so*来完成的，它先后搜索elf文件的 DT_RPATH 段, 环境变量
+    =LD_LIBRARY_PATH= ,  =/etc/ld.so.cache= 文件列表,  =/lib/= , =/usr/lib= 目录, 找到库文件后将其载入内存. (http://blog.chinaunix.net/uid-23592843-id-223539.html)
+
+    使用 Makefile 简化：
+
+    #+BEGIN_SRC makefile
+      .PHONY: build test clean
+
+      build: libmylib.so
+
+      libmylib.so: mymath.o myprint.o
+          gcc -o $@ -shared $<
+
+      mymath.o: mymath.c
+          gcc -c -fPIC $<
+
+      myprint.o: myprint.c
+          gcc -c -fPIC $<
+
+      test: a.out
+
+      exec: test.c libmylib.so
+          gcc test.c -L. -lmylib
+          LD_LIBRARY_PATH=. ./a.out
+
+      clean:
+          rm -f *.o *.so a.out
+    #+END_SRC
+
+    makefile 有问题，需要修改。
+
+** DRAFT 编写自己第一个 Linux 内核模块
+
+   https://app.yinxiang.com/shard/s18/nl/19217884/736939a5-dc4e-4ae2-a7b1-5f40a7032981/
+
+   内核模块是 Linux 内核向外部提供的一个插口，其全称为动态可加载内核模块（Loadable Kernel Module，LKM），我们简称为模块。
+
+   Linux 内核之所以提供模块机制，是因为它本身是一个单内核（monolithic kernel）。单内核的最大优点是效率高，因为所有的内容都集成在一起，但其缺点是可扩展性和可维护性相对较差，模块机制就是为了弥补这一缺陷。
+
+*** 1、什么是模块
+
+    模块是具有独立功能的程序，它可以被单独编译，但不能独立运行。它在运行时被链接到内核作为内核的一部分在内核空间运行，这与运行在用户空间的进程是不同的。模块通常由一组函数和数据结构组成，用来实现一种文件系统、一个驱动程序或其他内核上层的功能。
+
+    为了加深对内核模块的了解，给出应用程序与内核模块程序的比较:
+
+    | 功能     | C语言应用程序       | 内核模块程序                                |
+    |----------+---------------------+---------------------------------------------|
+    | 使用函数 | glibc 库            | 内核函数                                    |
+    | 头文件   | =/usr/include=      | =/usr/src/linux-headers-uname -r /include/= |
+    | 运行空间 | 用户空间(user mode) | 内核空间(kernel mode)                       |
+    | 运行权限 | 普通用户            | 超级用户                                    |
+    | 入口函数 | =main()=            | =module_init()/init_moudle()=               |
+    | 出口函数 | =exit()=            | =module_exit()/cleanup_module()=            |
+    | 编译     | =gcc –c=            | =Makefile=                                  |
+    | 连接     | =gcc=               | =insmod=                                    |
+    | 运行     | 直接运行            | =insmod=                                    |
+    | 调试     | =gdb=               | =kdbug= 、 =kdb= 、 =kgdb= 等               |
+
+    从表我们可以看出，内核模块程序不能调用 glibc 库中的函数，它运行在内核空间，且只有超级用户可以对其运行。另外，模块程序必须通过 module_init() 和 module-exit() 函数来告诉内核“我来了”和“我走了”。
+
+*** 2、编写一个简单的模块
+
+    模块和内核都在内核空间运行，模块编程在一定意义上说就是内核编程。因为内核版本的每次变化，其中的某些函数名也会相应地发生变化，因此模块编程与内核版本密切相关。
+
+    运行的环境下如下：
+
+    - 系统：CentOS 7
+    - 内核版本：3.10
+
+**** 2.1、程序举例
+
+     #+BEGIN_SRC c
+ #include<linux/module.h>
+ #include<linux/kernel.h>
+ #include<linux/init.h>
+
+ static int __init hello_init(void)
+ {
+     printk(KERN_INFO "Hello Kernel Module!\n");
+     return 0;
+ }
+
+ static void __exit hello_cleanup(void)
+ {
+     printk(KERN_INFO "Bye Kernel Module!\n");
+ }
+
+ module_init(hello_init);
+ module_exit(hello_cleanup);
+
+ MODULE_AUTHOR("Noah");
+ MODULE_DESCRIPTION("hello");
+ MODULE_LICENSE("GPL");
+     #+END_SRC
+
+     说明:
+
+     - 头文件 linux/module.h 所有模块都要使用此文件
+     - 头文件 linux/kernel.h 包含了常用的内核函数
+     - 头文件 linux/init.h 包含了宏 __init 和 __exit，它们允许释放内核占用的内存
+     - hello_init 函数是模块的初始化函数，它必需包含诸如要编译的代码、初始化数据结构等内容
+     - hello_cleanup 是模块的退出和清理函数，此处可以做所有终止该驱动程序时相关的清理工作
+     - module_init 和 module_exit 是模块编程中最基本也是必须的两个函数。module_init 是驱动程序初始化的入口点，而 module_exit 注销由模块提供的所有功能。
+     - 使用了 printk 函数，该函数是由内核定义的，功能与C库中的 printf 类似，它把要打印的信息输出到终端或系统日志。
+
+***** 2.1、编写Makefile 文件
+
+      #+BEGIN_SRC makefile
+ obj-m := hello.o
+
+ KDIR :=/lib/modules/$(shell uname -r)/build
+
+ all:
+     make -C $(KDIR) M=$(shell pwd) modules
+ clean:
+     make -C $(KDIR) M=$(shell pwd) clean
+      #+END_SRC
+
+      - =KDIR :=/lib/modules/$(shell uname -r)/build= 是编译内核模块需要的 Makefile 的路径，CentOS 下是 =/lib/modules/2.6.31-14-generic/build=
+      - =make -C $(KDIR) M=$(shell pwd) modules= 编译内核模块。－C 将工作目录转到 KDIR，调用该目录下的 Makefile，并向这个Makefile传递参数M的值是 =$(shell pwd) modules=
+
+      具体选项说明如下:
+
+      #+BEGIN_SRC sh
+
+ make -C $KDIR M=$PWD [target]
+ -C $KDIR
+    The directory where the kernel source is located.
+    "make" will actually change to the specified directory
+    when executing and will change back when finished.
+ M=$PWD
+    Informs kbuild that an external module is being built.
+    The value given to "M" is the absolute path of the
+    directory where the external module (kbuild file) is
+    located.
+ target
+    modules
+        The default target for external modules. It has the
+        same functionality as if no target was specified. See
+        description above. 默认是modules，可不写。
+    modules_install
+        Install the external module(s). The default location is
+        /lib/modules/<kernel_release>/extra/, but a prefix may
+        be added with INSTALL_MOD_PATH.
+    clean
+        Remove all generated files in the module directory only.
+    help
+        List the available targets for external modules.
+      #+END_SRC
+
+      参考[[https://www.kernel.org/doc/Documentation/kbuild/modules.txt][kernel module doc]]
+
+**** 2.3、编译模块
+
+     #+BEGIN_SRC sh
+ make       # 在 hello.c 所在文件夹就会有 hello.ko ，这个就是我们需要的内核模块
+ make clean # 清理编译垃圾，hello.ko 也会清理掉
+     #+END_SRC
+
+**** 2.4、加载模块
+
+     #+BEGIN_SRC 
+ sudo insmod hello.ko # 注意必须是root权限
+ dmesg
+     #+END_SRC
+
+     我们用 dmesg 就可以看到 产生的内核信息啦: "Hello Kernel Module!"
+     如果没有输出，因为如果你在字符终端而不是终端模拟器下运行的话，就会输出，因为在终端模拟器下时会把内核消息输出到日志文件/var/log/kern.log中。
+
+**** 2.5、 卸载模块
+
+     #+BEGIN_SRC sh
+ rmmod hello
+     #+END_SRC
+
+     再用 =dmesg= 可以看到 =Bye Kernel Module!=
+
+*** 3、管理内核模块的工具
+
+    =modutils= 是管理内核模块的一个软件包。可以在任何获得内核源代码的地方获取 Modutils(modutils-x.y.z.tar.gz)源代码，然后选择最高级别的 patch.x.y.z 等于或小于当前的内核版本，安装后在 /sbin 目录下就会有 insmod、rmmod、ksyms、lsmod、modprobe 等实用程序。当然，通常我们在加载 Linux 内核时，modutils 已经被载入。
+
+**** 3.1、insmod
+
+     装在内核模块，调用 insmod 程序把需要插入的模块以目标代码的形式插入到内核中。在插入的时候，insmod 自动调用 init_module() 函数运行。注意，只有超级用户才能使用这个命令，其命令格式为：insmod [path] modulename.ko
+
+**** 3.2、rmmod
+
+     #+BEGIN_EXAMPLE
+     卸载内核模块
+     #+END_EXAMPLE
+
+     调用 rmmod 程序将已经插入内核的模块从内核中移出，rmmod 会自动运行 cleanup_module()  函数，其命令格式为：
+
+     #+BEGIN_SRC sh
+     rmmod [path] modulename.ko
+     #+END_SRC
+
+**** 3.3、lsmode
+
+     调用 lsmod 程序将显示当前系统中正在使用的模块信息。实际上这个程序的功能就是读取 proc 文件系统中的文件 /proc/modules 中的信息，其命令格式为：
+
+     #+BEGIN_SRC sh
+     lsmod
+     #+END_SRC
+
+**** 3.4、ksyms 命令
+
+     =ksyms= 这个程序用来显示内核符号和模块符号表的信息。与 lsmod 相似，它的功能是读取 /proc文件系统中的另一个文件 /proc/kallsyms 。其命令格式为：
+
+     #+BEGIN_SRC sh
+      ksyms
+     #+END_SRC
+
+**** 3.5、其他
+
+     1. =dmesg= 查看输出信息 =cat /var/log/syslog=
+     2. =strace= 跟踪系统调用
+
+*** 4、Trouble Shooting
+
+    #+BEGIN_SRC sh
+      insmod: ERROR: could not insert module module.ko: Invalid parameters
+    #+END_SRC
+
+    出现这个问题，一般都是 Linux 头文件目录和当系统运行的版本不匹配。使用命令：uname -r 查看当前运行的内核版本，然后选择正确的 Linux头文件路径，也可以下载和机器内核对应的Linux源码，这样指定Linux头文件目录到指定的源码目录就行了。第二个就是生成的模块名字不能以module命名，改成其他名字就好了。
+
+    这个问题出现在另外一个地方，我在 MacOS 写的代码，然后挂在目录在 Linux 上，然后编译加载就会出现这个问题，如果直接在 Linux 上则没有问题，至今没有解决。
+
+    另外模块的printk打印的信息不能直接显示在终端上，可以使用 dmesg 查看自开机以来的信息就可以看到printk输出的信息了，使用 dmesg | tail1 可以查看最后的几个消息。使用 rmmod 可以移除安装了的模块。
+
+    #+BEGIN_SRC 
+      insmod: ERROR: could not insert module hello.ko: Invalid module format
+    #+END_SRC
+
+    TODO…
+
+*** 5、参考文章：
+    - http://stackoverflow.com/questions/21244481/error-using-insmod-could-not-insert-module-hello-world-ko-invalid-module-forma
+    - http://blog.csdn.net/u013095333/article/details/52457717
 
 * macOS
-** TODO macOS 搭建 MASM 的汇编环境                                 :macOS:OS:
+** DRAFT macOS 搭建 MASM 的汇编环境                                :macOS:OS:
+
    https://app.yinxiang.com/shard/s18/nl/19217884/5d2e04c6-f98b-453a-a9d8-07ec1c6708bf/
-** TODO macOS 的目录结构                                           :macOS:OS:
+
+*** 安装 nasm
+
+    #+BEGIN_SRC sh
+    # install
+    $ brew install nasm
+
+    # 查询版本
+    $ nasm -v
+    NASM version 0.98.40 (Apple Computer, Inc. build 11) compiled on Feb 13 2018
+    #+END_SRC
+
+*** 实例
+
+    写一个汇编的 hello world, 文件名为 hello.asm:
+
+    #+BEGIN_SRC nasm
+    global start
+
+    section .text
+    start:
+        push    dword msg.len
+        push    dword msg
+        push    dword 1
+        mov     eax, 4
+        sub     esp, 4
+        int     0x80
+        add     esp, 16
+
+        push    dword 0
+        mov     eax, 1
+        sub     esp, 12
+        int     0x80
+
+    section .data
+
+    msg:    db      "hello world", 10
+    .len:   equ     $ - msg
+    #+END_SRC
+
+*** 安装 Command Line Tools
+
+    如果已经安装了 Xcode 就不需要执行这条命令了。
+
+    #+BEGIN_SRC sh
+    sudo xcode-select --install
+    #+END_SRC
+
+*** 编译/链接/运行
+
+    注意: mac 上面的 gcc 编译 .o 文件的时候默认的入口是 _main ，而使用 ld 命令时，默认的是 start 。
+
+    分步执行:
+    1. 编译: =nasm -o hello.o -f macho hello.asm=
+    2. 连接: =ld -arch i386 -macosx_version_min 10.7.0 -no_pie -e_main -o hello hello.o=
+ 
+**** nasm
+
+     - =-o hello.o= : 输入文件
+     - =-f macho= : 指定文件格式
+       - =Linux= : elf 或 elf64
+       - =macOS= : macho
+
+**** ld
+
+     - =-arch i386= : 指定为架构(32位)
+     - =-macosx_version_min 10.6= : macOS - complains about default specification
+     - =-no_pie= : macOS, 删除 ld 的 warning
+     - =-e main= : 指定 main symbol name (macOS - 默认是 start
+     - =-o hello= : 输入文件
+
+** DRAFT macOS 的目录结构                                          :macOS:OS:
 
    =Mac= 机器主板使用了 =Intel= 主导的 =EFI= 标准，硬盘分区格式采用 =GPT=。这种 =EFI+GPT= 的方式相比传统的 =BIOS＋MBR= 的方式有很多好处。
 
@@ -65,23 +927,34 @@
     - =/Volumes=: 文件系统挂载点存放目录，例如U盘
     - =/cores=: 内核转储文件存放目录。当一个进程崩溃时，如果系统允许则会产生转储文件。
     - =/private=: 里面的子目录存放了=/tmp=, =/var=, =/etc=等链接目录的目标目录
-** TODO macOS 的 luanchctl
+** DRAFT macOS 的 luanchctl
 * FreeeBSD
+
   TODO...
+
+* Windows
+
+  TODO...
+
 * Compile and link
-** TODO GCC 和 Clang 命令                                   :gcc:clang:@编译:
+** DRAFT GCC 和 Clang 命令                                  :gcc:clang:@编译:
 
    主要介绍 编译工具 Gcc 和 Clang 的常用选项。
 
    <!--more-->
 
 *** Linux 下 使用 Gcc
+
+    - [GCC 编译选项分析](http://www.cnblogs.com/showna/articles/1013401.html)
+    - [GCC Command-Line Options](http://tigcc.ticalc.org/doc/comopts.html)
 *** macOS 下 使用 Clang
-** TODO GDB 和 LLDB 命令总结                                 :gdb:lldb:@编译:
-  :PROPERTIES:
-  :EXPORT_FILE_NAME: gdb-and-lldb-usage
-  :EXPORT_DATE: <2018-10-16 Tue>
-  :END:
+
+    https://app.yinxiang.com/shard/s18/nl/19217884/730115d2-9ddf-4cb4-bd98-9fe716b3e523/
+** DRAFT GDB 和 LLDB 命令总结                                :gdb:lldb:@编译:
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: gdb-and-lldb-usage
+   :EXPORT_DATE: <2018-10-16 Tue>
+   :END:
 
    主要介调试工具 =gdb= 和 ==lldb= 的常用选项。
 
@@ -268,9 +1141,9 @@ end
 
        https://blog.csdn.net/Jin_Kwok/article/details/80104022
 
-** TODO GDB 跟踪方法调用堆栈环境的搭建                            :gdb:@编译:
+** DRAFT GDB 跟踪方法调用堆栈环境的搭建                           :gdb:@编译:
    
-    在 macOS 14.0 下使用 Vagrant + Ubuntu 16.04 + go 1.11
+   在 macOS 14.0 下使用 Vagrant + Ubuntu 16.04 + go 1.11
    
 **** 安装必要命令行工具
 
@@ -368,7 +1241,7 @@ end
        end
      #+END_SRC
 
-** TODO GDB 和 LLDB 查看函数调用栈                           :gdb:lldb:@编译:
+** DRAFT GDB 和 LLDB 查看函数调用栈                          :gdb:lldb:@编译:
 *** 源文件
 
     C 源文件如下：
@@ -438,15 +1311,15 @@ end
 *** C 语言示例
 **** GDB 调试
 
-    编译文件:
+     编译文件:
 
-    #+BEGIN_SRC sh
+     #+BEGIN_SRC sh
     gcc -g -O0 -o test test.c # -O0 阻止编译器优化
-    #+END_SRC
+     #+END_SRC
 
-    使用 gdb 调试:
+     使用 gdb 调试:
 
-    #+BEGIN_SRC sh
+     #+BEGIN_SRC sh
       vagrant@trusty32:~/function-call-stack$ gdb ctest
       GNU gdb (Ubuntu 7.7.1-0ubuntu5~14.04.3) 7.7.1
       Copyright (C) 2014 Free Software Foundation, Inc.
@@ -568,7 +1441,7 @@ end
           0xb7ffe000 0xb7fff000     0x1000    0x1f000 /lib/i386-linux-gnu/ld-2.19.so
           0xb7fff000 0xb8000000     0x1000    0x20000 /lib/i386-linux-gnu/ld-2.19.so
           0xbffdf000 0xc0000000    0x21000        0x0 [stack]
-    #+END_SRC
+     #+END_SRC
 
 **** LLDB 调试
 *** Go 语言示例
@@ -594,7 +1467,7 @@ end
 
 **** GDB 调试
 
-    #+BEGIN_SRC sh
+     #+BEGIN_SRC sh
       vagrant@trusty32:~/function-call-stack$ gdb gtest
       GNU gdb (Ubuntu 7.7.1-0ubuntu5~14.04.3) 7.7.1
       Copyright (C) 2014 Free Software Foundation, Inc.
@@ -690,20 +1563,20 @@ end
           0xb7fff000 0xb8000000     0x1000        0x0 [vdso]
           0xbffdf000 0xc0000000    0x21000        0x0
       (gdb) quit
-    #+END_SRC
+     #+END_SRC
     
 **** LLDB 调试
 
-    #+BEGIN_SRC sh
+     #+BEGIN_SRC sh
      
-    #+END_SRC
+     #+END_SRC
 *** 参考书籍
 
     - 《Go 学习笔记》雨痕
     - 《C 学习笔记》雨痕
     - 《程序员的自我修养-链接，装载，库》
 
-** TODO GDB 和 LLDB 跟踪 C 语言函数执行过程
+** DRAFT GDB 和 LLDB 跟踪 C 语言函数执行过程
 
    https://favoorr.github.io/2017/02/26/gdb-trace-c-function-call/
 
@@ -714,7 +1587,7 @@ end
     - C 语言中函数调用时，会使用寄存器来进行值复制传递
     - C 语言中现场保护时会保存 rbp 和 rip，下一级函数调用结束后，恢复值，继续执行
 
-** TODO GDB 和 LLDB 跟踪 Go 语言方法执行过程 
+** DRAFT GDB 和 LLDB 跟踪 Go 语言方法执行过程 
 *** 总结
     - Go 语言中函数调用时会分配对应的栈帧，rsp 始终指向栈帧顶部，rbp 被当做普通寄存器使用
     - Go 语言中使用 (rsp + 偏移量) 来进行栈帧寻址操作，完成函数调用
@@ -725,18 +1598,22 @@ end
       可以观察到 Go 语言根据自己语言特性和定位，实现方式并不跟 C 语言完全相同， 例如多返回值，使用栈上存储就非常方便
 
       https://favoorr.github.io/2017/02/26/gdb-trace-go-function-call/
+** DRAFT CMake 入门 
+   https://app.yinxiang.com/shard/s18/nl/19217884/bc747114-12c1-44d0-9a40-b7d3cadcea93/
+** TODO core dump 的使用
+   https://app.yinxiang.com/shard/s18/nl/19217884/7cd508ca-ec42-4b2e-bb55-b2890cc0b8b4/
 * Vagrant
-** TODO Vagrant 的配置和使用
-** TODO Vagrant 的配置集群
+** DRAFT Vagrant 的配置和使用
+** DRAFT Vagrant 的配置集群
    https://favoorr.github.io/2017/01/06/vagrant-multiple-servers-cluster-config-best-practices/
 * Language
 ** C and Cplusplus
 ** Golang
-*** TODO Golang 学习之 Channel 深入
-*** TODO Golang 调用 C/C++
+*** DRAFT Golang 学习之 Channel 深入
+*** DRAFT Golang 调用 C/C++
     https://app.yinxiang.com/shard/s18/nl/19217884/f289fb4d-8656-4c6b-9dbc-e211b804d70d/
 ** Java
-*** TODO Java 入门
+*** DRAFT Java 入门
 
 **** 0x00 环境变量配置
 
@@ -779,12 +1656,35 @@ end
 ** Shadowsock
    - Sock5
    - PAC
+* Editor and IDE
+** Emacs
+*** Emacsclient 和 Emacs daemon
+*** DRAFT 在Org-mode中执行代码
+
+    https://brantou.github.io//2017/06/12/go-source-code-block-in-org/
+
+**** 在Org-mode中执行 C 代码
+**** 在Org-mode中执行 Go 代码
+**** 在Org-mode中执行 Python 代码
+*** DRAFT 在Org-mode中计算表格
+** Vim
+** VSCode
+*** DRAFT VSCode 的命令行使用
+
+**** 参考
+     - https://code.visualstudio.com/docs/editor/command-line
+* 源码分析
+** 学习 Redis 源码
+** 学习 Nginx 源码
+** 学习 Libevent 源码
+** 学习 Memcached 源码
+** 学习 Tornado 源码
 * Other
-** TODO 关于工具                                                      :@想法:
+** DRAFT 关于工具                                                     :@想法:
 
    人们都是对于自己付出了努力的东西特人珍视，哪怕这个东西不是最好的，他们也不会轻易放弃。
    我最近就有这个想法，自己一直以来一直想要学习 Emacs， 因此付出了很多的努力，所以哪怕当 Emacs 出现卡死或者其他很难就觉得问题，我还是会继续忍受下去，因为我付出了努力。
-** TODO 关于 ARTS
+** DRAFT 关于 ARTS
 
    ARTS 是指：
 
@@ -793,11 +1693,11 @@ end
    - Technique/Tips 分享一个小技术
    - Share 分享一个观点
 
-** TODO 使用 hugo 和 ox-hugo 搭建自己的 BLOG             :emacs:orgmode:hugo:
-  :PROPERTIES:
-  :EXPORT_FILE_NAME: use-orgmode-and-hugo-write-blog
-  :EXPORT_DATE: <2018-10-16 Tue>
-  :END:
+** DRAFT 使用 hugo 和 ox-hugo 搭建自己的 BLOG            :emacs:orgmode:hugo:
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: use-orgmode-and-hugo-write-blog
+   :EXPORT_DATE: <2018-10-16 Tue>
+   :END:
 
    - 为什么要写这个文章？
    - 为什么使用 hugo 而不是 hexo 或者其他的？
@@ -987,13 +1887,26 @@ end
     - [[http://www.xianmin.org/post/ox-hugo/]]
     - [[https://blog.coderzh.com/2015/08/29/hugo/]]
       
-** 从源码到可执行文件-编译-链接-执行
+** DRAFT 从源码到可执行文件-编译-链接-执行
 
-  https://favoorr.github.io/2017/03/01/compile-link-1/
+   https://favoorr.github.io/2017/03/01/compile-link-1/
 
+** TODO RPCX 入门
+*** 介绍
+*** 安装
+*** 用法
+*** 资料
+
+    - http://rpcx.site/
+    - https://doc.rpcx.site/
+    - [[https://en.wikipedia.org/wiki/RPC][RPC Wiki]]
+    - [[https://www.gitbook.com/book/smallnest/go-rpc][Go RPC 开发指南]]
+
+** TODO 编码
+   https://app.yinxiang.com/shard/s18/nl/19217884/55e95f2b-5d41-4540-a6e3-a97288aab99a/
 * Footnotes
 * COMMENT Local Variables                          :ARCHIVE:
-# Local Variables:
-# org-hugo-auto-export-on-save: nil
-# End:
+  # Local Variables:
+  # org-hugo-auto-export-on-save: nil
+  # End:
 
