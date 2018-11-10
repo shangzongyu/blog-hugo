@@ -1,23 +1,24 @@
 +++
 title = "使用 hugo 和 ox-hugo 搭建自己的 BLOG"
-date = 2018-10-16T00:00:00+08:00
-lastmod = 2018-10-16T17:40:26+08:00
+date = 2018-11-10T15:28:00+08:00
+lastmod = 2018-11-10T16:04:25+08:00
 tags = ["emacs", "orgmode", "hugo"]
-draft = true
+draft = false
 weight = 2001
 +++
 
 -   为什么要写这个文章？
 -   为什么使用 hugo 而不是 hexo 或者其他的？
-    > hexo node 写的，环境配置等麻烦
+    -   hexo node 写的，环境配置等麻烦
+    -   喜欢 org-mode 语法超过 Markdown
 -   为什么使用 org-mode , 而不是 markdown, 明明 Markdown 更有名
+
+<!--more-->
 
 
 ## 缘起 {#缘起}
 
 `org-mode` 是一个很强的纯文本语法格式，自己非常喜欢 `org-mode` ，因此自己使用 `org-mode` 来记录自己的笔记。当自己要开始写 BLOG 的时候，就决定决定使用 `org-mode` 来作为自己 BLOG 管理工具，之前是使用 emacs 的插件 [blog-admin](https://github.com/CodeFalling/blog-admin) 和 [hexo](https://hexo.io/) 生成自己的 BLOG，但是自己不是很喜欢这种组合 [blog-admin](https://github.com/CodeFalling/blog-admin) 。有两个原因：一个是 [blog-admin](https://github.com/CodeFalling/blog-admin) 已经不怎么更新了，还有一个就是自己不怎么喜欢 [hexo](https://hexo.io/) (我自己不怎么喜欢node)。
-
-<!--more-->
 
 因此我就选择了以下的组合:
 
