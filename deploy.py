@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding:utf-8
 
 import os
@@ -50,7 +50,7 @@ def deploy(args):
             subprocess.call('git submodule init', shell=True)
             subprocess.call('git submodule update', shell=True)
             subprocess.call('git submodule foreach git pull --rebase origin master', shell=True)
-            
+
         # on windows set TERM=msys
         s = subprocess.Popen('git log -1 --pretty=format:"%s"',
                              shell=True, stdout=subprocess.PIPE)
@@ -123,4 +123,3 @@ if __name__ == '__main__':
 
     if args.type in ['auto', 'manual', 'first']:
         deploy(args)
-
