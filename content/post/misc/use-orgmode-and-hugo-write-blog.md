@@ -1,6 +1,6 @@
 +++
 title = "使用 hugo 和 ox-hugo 搭建自己的 BLOG"
-lastmod = 2018-11-12T16:32:21+08:00
+lastmod = 2018-11-12T16:35:47+08:00
 tags = ["macOS"]
 categories = ["macOS"]
 draft = false
