@@ -1,10 +1,9 @@
 +++
 title = "使用 hugo 和 ox-hugo 搭建自己的 BLOG"
-date = 2018-11-10T15:28:00+08:00
-lastmod = 2018-11-10T16:04:25+08:00
-tags = ["emacs", "orgmode", "hugo"]
+lastmod = 2018-11-12T16:32:21+08:00
+tags = ["macOS"]
+categories = ["macOS"]
 draft = false
-weight = 2001
 +++
 
 -   为什么要写这个文章？
@@ -12,8 +11,6 @@ weight = 2001
     -   hexo node 写的，环境配置等麻烦
     -   喜欢 org-mode 语法超过 Markdown
 -   为什么使用 org-mode , 而不是 markdown, 明明 Markdown 更有名
-
-<!--more-->
 
 
 ## 缘起 {#缘起}
@@ -59,10 +56,10 @@ weight = 2001
 ox-hugo 提供了两种工作流来写 BLOG
 
 方法1:
-![](/ox-hugo/one-post-per-subtree.png)
+![](/use-orgmode-and-hugo-write-blog/one-post-per-subtree.png)
 
 方法2:
-![](/ox-hugo/one-post-per-file.png)
+![](/use-orgmode-and-hugo-write-blog/one-post-per-file.png)
 
 
 #### 安装 {#安装}
