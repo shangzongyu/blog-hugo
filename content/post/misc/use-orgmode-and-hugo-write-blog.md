@@ -1,6 +1,6 @@
 +++
 title = "使用 hugo 和 ox-hugo 搭建自己的 BLOG"
-lastmod = 2018-11-12T16:35:47+08:00
+lastmod = 2018-11-17T22:14:34+08:00
 tags = ["macOS"]
 categories = ["macOS"]
 draft = false
@@ -11,6 +11,8 @@ draft = false
     -   hexo node 写的，环境配置等麻烦
     -   喜欢 org-mode 语法超过 Markdown
 -   为什么使用 org-mode , 而不是 markdown, 明明 Markdown 更有名
+
+<!--more-->
 
 
 ## 缘起 {#缘起}
@@ -48,10 +50,10 @@ draft = false
 > 导出的 markdown 文件会编译不过，原因是因为生成的 `author` 标签， `hugo` 报错。因此可以把这个 `author` 禁止掉就可以了 ( `#+options: author:nil` )。
 
 
-### 入门 {#入门}
+## 入门 {#入门}
 
 
-#### ScreenShot {#screenshot}
+### ScreenShot {#screenshot}
 
 ox-hugo 提供了两种工作流来写 BLOG
 
@@ -62,12 +64,12 @@ ox-hugo 提供了两种工作流来写 BLOG
 ![](/use-orgmode-and-hugo-write-blog/one-post-per-file.png)
 
 
-#### 安装 {#安装}
+### 安装 {#安装}
 
 需要 emacs 24.4+ 和 Org 9.0+
 
 
-#### 配置 {#配置}
+### 配置 {#配置}
 
 `spacemacs` 中 `ox-hugo` 的配置, 在 `dotspacemacs/user-config` 中添加配置：
 
@@ -91,10 +93,10 @@ ox-hugo 提供了两种工作流来写 BLOG
 其他的配置参考 [ox-hugo](https://ox-hugo.scripter.co/) 官方文档。
 
 
-### Org To Hugo {#org-to-hugo}
+## Org To Hugo {#org-to-hugo}
 
 
-#### 基于单个文件的导出 {#基于单个文件的导出}
+### 基于单个文件的导出 {#基于单个文件的导出}
 
 <div class="table-caption">
   <span class="table-number">Table 1</span>:
@@ -118,7 +120,7 @@ ox-hugo 提供了两种工作流来写 BLOG
 | weight = 123 (in [menu.foo]) | `#+hugo_menu: :menu foo :weight 123` |
 
 
-#### 格式化 {#格式化}
+### 格式化 {#格式化}
 
 下表是 orgmode 标记语言转换 markdown 标记语言的格式:
 
@@ -142,10 +144,10 @@ ox-hugo 提供了两种工作流来写 BLOG
 |                    | - Requires CSS to render this underline class as an underline. |
 
 
-### 进阶 {#进阶}
+## 进阶 {#进阶}
 
 
-#### 自动生成 markdown 文件配置 {#自动生成-markdown-文件配置}
+### 自动生成 markdown 文件配置 {#自动生成-markdown-文件配置}
 
 在 `hugo` 的 `base` 目录下新建一个目录 `content-org=，并且新建文件 =.dir-locals.el`, 内容如下：
 
@@ -169,7 +171,7 @@ ox-hugo 提供了两种工作流来写 BLOG
 还没有完，需要在每个 `org` 文件后添加如下内容，这样会很麻烦，但是我们可以使用 `yassnnpets` 来完成：
 
 
-#### Org 文件中包含图片 {#org-文件中包含图片}
+### Org 文件中包含图片 {#org-文件中包含图片}
 
 把图片放到 org 文件目录下，使用如下语法就可以引用图片:
 
@@ -177,14 +179,13 @@ ox-hugo 提供了两种工作流来写 BLOG
 [[file:image_path]]
 ```
 
+-   附录
 
-## 附录 {#附录}
 
-
-### 我的Snipptes {#我的snipptes}
+## 我的Snipptes {#我的snipptes}
 
 ```text
-# -*- mode: snippet -*-
+# -* mode: snippet -*-
 # name: hugo
 # key: hugo
 # --
@@ -200,8 +201,8 @@ ox-hugo 提供了两种工作流来写 BLOG
 
 $0
 
-* Footnotes
-* COMMENT Local Variables                          :ARCHIVE:
+- Footnotes
+- COMMENT Local Variables                          :ARCHIVE:
 # Local Variables:
 # org-hugo-auto-export-on-save: t
 # End:
