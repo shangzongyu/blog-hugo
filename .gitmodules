@@ -1,6 +1,3 @@
 [submodule "themes/jane"]
 	path = themes/jane
 	url = https://github.com/xianmin/hugo-theme-jane
-[submodule "public"]
-	path = public
-	url = https://github.com/shangzongyu/blog-html
