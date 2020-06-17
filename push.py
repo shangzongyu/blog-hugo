@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-# coding:utf-8
 
 import os
 
 
 def main():
-    os.system('git add -A')
-    os.system('git commit')
-    os.system('git fetch origin')
-    os.system('git rebase origin/master')
-    os.system('git push origin master')
+    os.system("git add -A")
+    os.system("git commit")
+    os.system("git fetch origin")
+    os.system("git rebase origin/master")
+    os.system("git push origin master")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

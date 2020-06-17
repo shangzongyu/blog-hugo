@@ -10,4 +10,4 @@ comment: false
 mathjax: false
 ---
 
-只想做一个快乐的技术人员.
+只想做一个快乐的技术人员
