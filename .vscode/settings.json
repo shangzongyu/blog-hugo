@@ -1,5 +1,4 @@
 {
-    "python.pythonPath": "/usr/local/opt/python/bin/python3.7",
     "workbench.colorCustomizations": {
         "editor.findMatchHighlightBackground": "#7d3f4d",
         "editor.foreground": "#91a4a5",
@@ -36,6 +35,45 @@
             "panelTitle.activeBorder": "#2b2b4a",
             "panelTitle.activeForeground": "#2ba5a1",
             "panelTitle.inactiveForeground": "#919FA3"
-        }
-    }
+        },
+        "activityBar.background": "#0b3800",
+        "titleBar.activeBackground": "#010500",
+        "titleBar.activeForeground": "#e7e7e7",
+        "activityBar.activeBackground": "#0b3800",
+        "activityBar.activeBorder": "#204cff",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#204cff",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "statusBar.background": "#010500",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#0b3800",
+        "titleBar.inactiveBackground": "#01050099",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#010500",
+    "cSpell.userWords": [
+      "launcherbar"
+      "tranalate",
+      "APUE",
+      "Bittorrent",
+      "Capslock",
+      "Hammerspoon",
+      "Honeyview",
+      "Rainmeter",
+      "Snipaste",
+      "gitlens",
+      "gocode",
+      "gometalinter",
+      "goreturns",
+      "lastmod",
+      "leetcode",
+      "mathjax",
+      "mcredis",
+      "pylint",
+      "rustfmt",
+      "shellcheck",
+      "submodule",
+      "umask"
+    ],
 }
