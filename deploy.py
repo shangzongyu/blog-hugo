@@ -49,17 +49,11 @@ def deploy(args):
             subprocess.call("git clean -fdx", shell=True)
             subprocess.call("git submodule init", shell=True)
             subprocess.call("git submodule update", shell=True)
-            subprocess.call(
-                "git submodule foreach git pull --rebase origin master", shell=True
-            )
+            subprocess.call("git submodule foreach git pull --rebase origin master", shell=True)
 
         # on windows set TERM=msys
-        s = subprocess.Popen(
-            'git log -1 --pretty=format:"%s"', shell=True, stdout=subprocess.PIPE
-        )
-        commit_msg = (
-            s.communicate()[0].decode("utf-8").encode(locale.getpreferredencoding())
-        )
+        s = subprocess.Popen('git log -1 --pretty=format:"%s"', shell=True, stdout=subprocess.PIPE)
+        commit_msg = s.communicate()[0].decode("utf-8").encode(locale.getpreferredencoding())
         # step2 build
         subprocess.call('hugo -v --cacheDir="./cache"', shell=True)
 
@@ -71,16 +65,12 @@ def deploy(args):
         with ChDir(deploy_dir):
             subprocess.call("git init", shell=True)
             for repo in GIT_REPO:
-                subprocess.call(
-                    "git remote add {0} {1}".format(repo[0], repo[2]), shell=True
-                )
+                subprocess.call("git remote add {0} {1}".format(repo[0], repo[2]), shell=True)
     elif args.type == "first":
         with ChDir(deploy_dir):
             subprocess.call("git init", shell=True)
             for repo in GIT_REPO:
-                subprocess.call(
-                    "git remote add {0} {1}".format(repo[0], repo[2]), shell=True
-                )
+                subprocess.call("git remote add {0} {1}".format(repo[0], repo[2]), shell=True)
 
     with ChDir(deploy_dir):
         # step4 clean and pull
@@ -91,15 +81,12 @@ def deploy(args):
                 subprocess.call("git rm --cached -r .", shell=True)
                 subprocess.call("git clean -fdx", shell=True)
                 subprocess.call("git branch -D {0}".format(GIT_REPO[0][1]), shell=True)
-                subprocess.call(
-                    "git checkout -b {0}".format(GIT_REPO[0][1]), shell=True
-                )
+                subprocess.call("git checkout -b {0}".format(GIT_REPO[0][1]), shell=True)
             else:
                 subprocess.call("git checkout {0}".format(GIT_REPO[0][1]), shell=True)
 
             subprocess.call(
-                "git reset --hard {0}/{1}".format(GIT_REPO[0][0], GIT_REPO[0][1]),
-                shell=True,
+                "git reset --hard {0}/{1}".format(GIT_REPO[0][0], GIT_REPO[0][1]), shell=True,
             )
             subprocess.call("git clean -fdx", shell=True)
 
@@ -125,17 +112,10 @@ def deploy(args):
             subprocess.call('git commit -a -m "{0}"'.format(commit_msg), shell=True)
             for repo in GIT_REPO:
                 if args.test:
-                    print(
-                        "git push {0} {1}:{2} -u".format(
-                            repo[0], GIT_REPO[0][1], repo[1]
-                        )
-                    )
+                    print("git push {0} {1}:{2} -u".format(repo[0], GIT_REPO[0][1], repo[1]))
                 else:
                     subprocess.call(
-                        "git push {0} {1}:{2} -u".format(
-                            repo[0], GIT_REPO[0][1], repo[1]
-                        ),
-                        shell=True,
+                        "git push {0} {1}:{2} -u".format(repo[0], GIT_REPO[0][1], repo[1]), shell=True,
                     )
 
 
