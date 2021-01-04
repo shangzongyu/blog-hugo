@@ -3,13 +3,9 @@
 import os
 
 
-def main():
+if __name__ == "__main__":
     os.system("git add -A")
     os.system("git commit")
     os.system("git fetch origin")
-    os.system("git rebase origin/master")
-    os.system("git push origin master")
-
-
-if __name__ == "__main__":
-    main()
+    os.system("git rebase origin/main")
+    os.system("git push origin main")
