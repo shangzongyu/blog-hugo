@@ -2,7 +2,7 @@
 # If you want to see the full configuration, please check `full-config.toml` .
 # And see https://gohugo.io/getting-started/configuration/ .
 
-baseURL = "http://www.shangzongyu.com"
+#baseURL = "http://www.shangzongyu.com"
 enableRobotsTXT = true
 enableEmoji = true
 theme = "jane"
@@ -94,12 +94,12 @@ defaultContentLanguage = "zh-cn"  # Default language to use (if you setup multil
   enable = true
 
 [params.social]                                         # 社交链接
-  # a-email = "mailto:shangzongyu1111@gmail.com"
+# a-email = "mailto:shangzongyu1111@gmail.com"
 #    b-stack-overflow = "http://localhost:1313"
 #    c-twitter = "http://localhost:1313"
 #    d-facebook = "http://localhost:1313"
 #    e-linkedin = "http://localhost:1313"
 #    f-google = "http://localhost:1313"
-  g-github = "https://github.com/shangzongyu"
-#    m-instagram = "http://localhost:1313"
-#    n-gitlab = "http://localhost:1313"
+#  g-github = "https://github.com/shangzongyu"
+#  m-instagram = "http://localhost:1313"
+#  n-gitlab = "http://localhost:1313"
