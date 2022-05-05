@@ -12,11 +12,9 @@ Go1.16 添加了一个新的特性 - 内嵌文件，可以用 `embed` 包很容�
 
 内嵌的文件内容必须是 `string` 、 `[]byte` 或者 `FS` 三个中的一个中。
 
-
 ## 安装 go1.16beta1 {#安装-go1-dot-16beta1}
 
 Go1.16 还是个 beta 版本，在这篇文件发布的时候，为了不和自己使用的 Go 版本冲突，因此可以使用 `go` 命令和 `gvm` 来安装 go1.16beta 。
-
 
 ### 使用 Go 命令 {#使用-go-命令}
 
@@ -29,7 +27,6 @@ $ go1.16beta1
 ```
 
 安装好后命令和 `go` 类似，只是之前的 `go` 替换成为 `go1.16beta1` 即可。
-
 
 ### 使用 GVM {#使用-gvm}
 
@@ -48,9 +45,7 @@ $ go version
 go version go1.16beta1 darwin/amd64
 ```
 
-
 ## 实例 {#实例}
-
 
 ### 简单 {#简单}
 
@@ -87,7 +82,6 @@ $ go run embed.go
 Hello Go Embed
 Hello Go Embed
 ```
-
 
 ### 实现文件服务器 {#实现文件服务器}
 
@@ -126,8 +120,7 @@ server listen on port: 8080
 
 然后就可以在浏览器上去查看 `assets` 目录里面的文件了。
 
-
 ## 资料 {#资料}
 
--   [Go 1.16 Release Notes - The Go Programming Language](https://tip.golang.org/doc/go1.16)
--   [embed - The Go Programming Language](https://tip.golang.org/pkg/embed/)
+- [Go 1.16 Release Notes - The Go Programming Language](https://tip.golang.org/doc/go1.16)
+- [embed - The Go Programming Language](https://tip.golang.org/pkg/embed/)
