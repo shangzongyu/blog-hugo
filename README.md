@@ -1,3 +1,5 @@
-# blog
+# Blog
 
-我的 BLOG，使用 org-mode 转成 markdown，然后使用 hugo 生成。
+This is my blog repo, use [ox-hugo](https://ox-hugo.scripter.co/) convert [Org Mode](https://orgmode.org/index.html) to [Markdown](https://www.markdownguide.org/).
+
+My editor is DoomEmacs.
