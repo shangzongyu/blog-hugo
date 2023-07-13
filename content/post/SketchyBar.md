@@ -1,0 +1,1 @@
+https://felixkratz.github.io/SketchyBar/
